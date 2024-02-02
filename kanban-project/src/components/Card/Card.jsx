@@ -1,4 +1,4 @@
-function Card({topic, title}) {
+function Card({topic, title, date}) {
     return (
         <div className="cards__item">
             <div className="cards__card card">
@@ -47,7 +47,7 @@ function Card({topic, title}) {
                                 </clipPath>
                             </defs>
                         </svg>
-                        <p>30.10.23</p>
+                        <p>{date}</p>
                     </div>
                 </div>
             </div>
