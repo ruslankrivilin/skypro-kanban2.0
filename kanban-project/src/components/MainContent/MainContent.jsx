@@ -1,15 +1,16 @@
+import { Container } from "../../styled/Common.styled"
 
 
 function MainContent({children}) {
     return (
         <main className="main">
-            <div className="container">
+            <Container>
                 <div className="main__block">
                     <div className="main__content">
                         {children}
                     </div>
                 </div>
-            </div>
+            </Container>
         </main>
     )
 }
