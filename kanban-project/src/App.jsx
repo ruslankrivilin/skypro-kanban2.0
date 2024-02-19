@@ -1,63 +1,37 @@
-
-import { useEffect, useState } from 'react'
 import './App.css'
-import Column from './components/Column/Column'
-import Header from './components/Header/Header'
-import MainContent from './components/MainContent/MainContent'
-import PopBrowse from './components/popupes/PopBrowse/PopBrowse'
-import PopExit from './components/popupes/PopExit/PopExit'
-import PopNewCard from './components/popupes/PopNewCard/PopNewCard'
-import { cardList } from './data'
+import { Routes, Route } from "react-router-dom";
+import { appRoutes } from "./styled/lib/appRoutes";
+import { useState } from "react";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import MainPage from "../pages/MainPage/MainPage";
+import SignupPage from "../pages/SignupPage/SignupPage";
+import SigninPage from "../pages/SigninPage/SigninPage";
+import NotFaundPage from "../pages/NotFaundPage/NotFaundPage";
+import TaskPage from "../pages/TaskPage/TaskPage";
+import ExitPage from "../pages/ExitPage/ExitPage";
 
-function App() {
+export default function App() {
+  const [user, setUser] = useState(true);
 
-  const [cards, setCards] = useState(cardList);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
-  function addCard() {
-    const newCard = {
-      id: cards.length + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    }
-    setCards([...cards, newCard])
+  function login () {
+    setUser(true);
   }
 
-  const statusList = [
-    "Без статуса",
-    "Нужно сделать",
-    "В работе",
-    "Тестирование",
-    "Готово",
-  ];
+  function logout () {
+    setUser(false);
+  }
 
   return (
-    <>
-      <div className="wrapper">
-        <PopExit />
-        <PopNewCard />
-        <PopBrowse />
-        <Header addCard={addCard} />
-        {isLoading ? ("Загрузка...") : (
-        <MainContent>
-          {statusList.map((status) => (
-            <Column
-              title={status}
-              key={status}
-              cardList={cards.filter((card) => card.status === status)}
-            />
-          ))}
-        </MainContent>)}
-      </div>
-    </>
+    <Routes>
+      <Route element={<PrivateRoute element={user} />}>
+        <Route path={appRoutes.MAIN} element={<MainPage />} >
+          <Route path={appRoutes.TASK} element={<TaskPage/>} />
+          <Route path={appRoutes.EXIT} element={<ExitPage  logout={logout}/>} />
+        </Route>
+      </Route>
+      <Route path={appRoutes.SIGNIN} element={<SigninPage  login={login}/>} />
+      <Route path={appRoutes.SIGNUP} element={<SignupPage />} />
+      <Route path={appRoutes.NOT_FOUND} element={<NotFaundPage />} />
+    </Routes>
   )
 }
-
-export default App
