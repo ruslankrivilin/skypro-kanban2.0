@@ -1,3 +1,5 @@
+import { appRoutes } from "../../../styled/lib/appRoutes";
+import { Link } from "react-router-dom";
 
 function PopExit() {
     return (
@@ -9,12 +11,16 @@ function PopExit() {
                     </div>
                     <form className="pop-exit__form" id="formExit" action="#">
                         <div className="pop-exit__form-group">
-                            <button className="pop-exit__exit-yes _hover01" id="exitYes">
-                                <a href="src/components/signin.jsx">Да, выйти</a>{" "}
-                            </button>
-                            <button className="pop-exit__exit-no _hover03" id="exitNo">
-                                <a href="app.jsx">Нет, остаться</a>{" "}
-                            </button>
+                            <Link to={appRoutes.SIGNIN}>
+                            <span className="pop-exit__exit-yes _hover01" id="exitYes">
+                                Да, выйти{" "}
+                            </span>
+                            </Link>
+                            <Link to={appRoutes.MAIN}>
+                            <span className="pop-exit__exit-no _hover03" id="exitNo">
+                                Нет, остаться{" "}
+                            </span>
+                            </Link>
                         </div>
                     </form>
                 </div>
