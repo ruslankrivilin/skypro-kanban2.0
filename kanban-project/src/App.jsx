@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { appRoutes } from "./styled/lib/appRoutes";
 import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -12,18 +12,21 @@ import ExitPage from "../pages/ExitPage/ExitPage";
 
 export default function App() {
   const [user, setUser] = useState(true);
+  const navigate = useNavigate();
 
   function login () {
     setUser(true);
+    navigate(appRoutes.MAIN);
   }
 
   function logout () {
     setUser(false);
+    navigate(appRoutes.SIGNIN);
   }
 
   return (
     <Routes>
-      <Route element={<PrivateRoute element={user} />}>
+      <Route element={<PrivateRoute user={user} />}>
         <Route path={appRoutes.MAIN} element={<MainPage />} >
           <Route path={appRoutes.TASK} element={<TaskPage/>} />
           <Route path={appRoutes.EXIT} element={<ExitPage  logout={logout}/>} />
