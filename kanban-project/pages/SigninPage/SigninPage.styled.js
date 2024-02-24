@@ -7,10 +7,18 @@ export const BodySignin = styled.body`
 `
 
 export const WraperSigninDiv = styled.div`
-
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #EAEEF6;
 `
 
 export const ContainerSigninDiv = styled.div`
+  display: block;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0 auto;
 `
 
 export const ModalBtnEnter = styled.button`
@@ -33,10 +41,26 @@ width: 100%;
 `
 
 export const ModalDiv = styled.div`
-
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
 export const ModalBlockDiv = styled.div`
+  display: block;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  max-width: 368px;
+  width: 100%;
+  padding: 50px 60px;
+  border-radius: 10px;
+  border: 0.7px solid #D4DBE5;
+  box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 `
 
 export const ModalTtDiv = styled.div`
@@ -49,6 +73,11 @@ text-align: center;
 `
 
 export const ModalFormatLoginForm = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
 export const ModalFormGroupDiv = styled.div`
