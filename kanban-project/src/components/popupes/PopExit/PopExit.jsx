@@ -12,14 +12,14 @@ function PopExit() {
                     <form className="pop-exit__form" id="formExit" action="#">
                         <div className="pop-exit__form-group">
                             <Link to={appRoutes.SIGNIN}>
-                            <span className="pop-exit__exit-yes _hover01" id="exitYes">
-                                Да, выйти{" "}
-                            </span>
+                                <span className="pop-exit__exit-yes _hover01" id="exitYes">
+                                    Да, выйти{" "}
+                                </span>
                             </Link>
                             <Link to={appRoutes.MAIN}>
-                            <span className="pop-exit__exit-no _hover03" id="exitNo">
-                                Нет, остаться{" "}
-                            </span>
+                                <span className="pop-exit__exit-no _hover03" id="exitNo">
+                                    Нет, остаться{" "}
+                                </span>
                             </Link>
                         </div>
                     </form>

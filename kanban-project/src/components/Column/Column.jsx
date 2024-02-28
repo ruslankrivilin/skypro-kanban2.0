@@ -8,11 +8,11 @@ function Column({ title, cardList }) {
             </div>
             <div className="cards">
                 {cardList.map((card) => 
-                <Card topic={card.theme} 
+                <Card topic={card.topic} 
                 title={card.title} 
                 date={card.date} 
-                key={card.id} 
-                id={card.id} 
+                key={card._id} 
+                id={card._id} 
                 />)}
             </div>
         </div>

@@ -1,46 +1,50 @@
 import { useEffect, useState } from "react";
-import { cardList } from "../../src/data";
 import Header from "../../src/components/Header/Header";
 import MainContent from "../../src/components/MainContent/MainContent";
 import Column from "../../src/components/Column/Column";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { getTodos } from "../../src/api";
 
 
-function MainPage() {
+function MainPage({user}) {
 
-    const [cards, setCards] = useState(cardList);
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    }, []);
-  
-    function addCard() {
-      const newCard = {
-        id: cards.length + 1,
-        theme: "Web Design",
-        title: "Название задачи",
-        date: "30.10.23",
-        status: "Без статуса",
-      }
-      setCards([...cards, newCard])
+  const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  useEffect(() => {
+    getTodos({ token: user.token }).then((todos) => {
+      console.log(todos);
+      setCards(todos.tasks);
+      setIsLoading(false);
+    })
+  }, [user])
+
+  function addCard() {
+    const newCard = {
+      id: cards.length + 1,
+      theme: "Web Design",
+      title: "Название задачи",
+      date: "30.10.23",
+      status: "Без статуса",
     }
-  
-    const statusList = [
-      "Без статуса",
-      "Нужно сделать",
-      "В работе",
-      "Тестирование",
-      "Готово",
-    ];
-  
-    return (
-      <>
-        <div className="wrapper">
-          <Outlet/>
-          <Header addCard={addCard} />
-          {isLoading ? ("Загрузка...") : (
+    setCards([...cards, newCard])
+  }
+
+  const statusList = [
+    "Без статуса",
+    "Нужно сделать",
+    "В работе",
+    "Тестирование",
+    "Готово",
+  ];
+
+  return (
+    <>
+      <div className="wrapper">
+        <Outlet />
+        <Header addCard={addCard} />
+        {isLoading ? ("Загрузка...") : (
           <MainContent>
             {statusList.map((status) => (
               <Column
@@ -50,10 +54,9 @@ function MainPage() {
               />
             ))}
           </MainContent>)}
-        </div>
-      </>
-    )
-  }
-  
-  export default MainPage
-  
+      </div>
+    </>
+  )
+}
+
+export default MainPage

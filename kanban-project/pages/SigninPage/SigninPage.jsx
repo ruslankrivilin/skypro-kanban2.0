@@ -1,7 +1,26 @@
+import { useState } from "react";
 import { ModalInput } from "../SignupPage/SignupPage.styled";
 import { BodySignin, ContainerSigninDiv, ModalBlockDiv, ModalBtnEnter, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalTtDiv, WraperSigninDiv } from "./SigninPage.styled";
+import { signIn } from "../../src/api";
 
 export default function SigninPage({login}) {
+    const [loginData, setLoginData] = useState({ login: "", password: "" })
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target; // Извлекаем имя поля и его значение
+
+        setLoginData({
+            ...loginData, // Копируем текущие данные из состояния
+            [name]: value, // Обновляем нужное поле
+        });
+    };
+
+    const handleLogin = async() => {
+        await signIn(loginData).then((data) => {
+            login(data.user)
+        })
+    };
+
     return (
         <BodySignin>
             <WraperSigninDiv>
@@ -12,9 +31,23 @@ export default function SigninPage({login}) {
                                 <h2>Вход</h2>
                             </ModalTtDiv>
                             <ModalFormatLoginForm action="#">
-                                <ModalInput type="text" name="login" id="loginReg" placeholder="Эл. почта"></ModalInput>
-                                <ModalInput type="password" name="password" id="passwordFirst" placeholder="Пароль"></ModalInput>
-                                <ModalBtnEnter onClick={login}>Войти</ModalBtnEnter>
+                                <ModalInput
+                                    value={loginData.login}
+                                    onChange={handleInputChange}
+                                    type="text"
+                                    name="login"
+                                    id="loginReg"
+                                    placeholder="Эл. почта">
+                                </ModalInput>
+                                <ModalInput
+                                    value={loginData.password}
+                                    onChange={handleInputChange}
+                                    type="password"
+                                    name="password"
+                                    id="passwordFirst"
+                                    placeholder="Пароль">
+                                </ModalInput>
+                                <ModalBtnEnter onClick={handleLogin}>Войти</ModalBtnEnter>
                                 <ModalFormGroupDiv>
                                     <p>Нужно зарегистрироваться?</p>
                                     <a href="signup">Регистрируйтесь здесь</a>
