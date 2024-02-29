@@ -17,6 +17,8 @@ function MainPage({user}) {
       console.log(todos);
       setCards(todos.tasks);
       setIsLoading(false);
+    }).catch((error) => {
+      alert(error)
     })
   }, [user])
 
