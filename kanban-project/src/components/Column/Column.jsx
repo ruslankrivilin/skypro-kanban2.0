@@ -7,13 +7,14 @@ function Column({ title, cardList }) {
                 <p>{title}</p>
             </div>
             <div className="cards">
-                {cardList.map((card) => 
-                <Card topic={card.theme} 
-                title={card.title} 
-                date={card.date} 
-                key={card.id} 
-                id={card.id} 
-                />)}
+                {cardList.map((card) =>
+                    <Card
+                        topic={card.topic}
+                        title={card.title}
+                        date={card.date}
+                        key={card._id}
+                        id={card._id}
+                    />)}
             </div>
         </div>
     )

@@ -1,31 +1,29 @@
-import { appRoutes } from "../../../styled/lib/appRoutes";
-import { Link } from "react-router-dom";
+import { Container, PopExitBlock, PopExitFormGroup, PopExitNo, PopExitTtl, PopExitYes, PopExites } from "./PopExit.styled";
 
-function PopExit() {
+function PopExit(logout) {
     return (
-        <div className="pop-exit" id="popExit">
-            <div className="pop-exit__container">
-                <div className="pop-exit__block">
-                    <div className="pop-exit__ttl">
+        <PopExites>
+            <Container>
+                <PopExitBlock>
+                    <PopExitTtl>
                         <h2>Выйти из аккаунта?</h2>
-                    </div>
-                    <form className="pop-exit__form" id="formExit" action="#">
-                        <div className="pop-exit__form-group">
-                            <Link to={appRoutes.SIGNIN}>
-                            <span className="pop-exit__exit-yes _hover01" id="exitYes">
-                                Да, выйти{" "}
-                            </span>
-                            </Link>
-                            <Link to={appRoutes.MAIN}>
-                            <span className="pop-exit__exit-no _hover03" id="exitNo">
-                                Нет, остаться{" "}
-                            </span>
-                            </Link>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    </PopExitTtl>
+                    <span>
+                        <PopExitFormGroup>
+                            
+                                <PopExitYes onClick={logout}>
+                                    Да, выйти{" "}
+                                </PopExitYes>
+                            
+                                <PopExitNo onClick={logout}>
+                                    Нет, остаться{" "}
+                                </PopExitNo>
+
+                        </PopExitFormGroup>
+                    </span>
+                </PopExitBlock>
+            </Container>
+        </PopExites>
     )
 }
 
