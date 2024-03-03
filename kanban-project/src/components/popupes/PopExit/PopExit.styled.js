@@ -46,9 +46,7 @@ export const PopExitTtl = styled.div`
   margin-bottom: 20px;
 `
 
-export const PopExitForm = styled.div`
 
-`
 
 export const PopExitFormGroup = styled.div`
   width: 100%;

@@ -2,7 +2,7 @@
 const baseHost = "https://wedev-api.sky.pro/api/kanban";
 const userHost = "https://wedev-api.sky.pro/api/user";
 
-export async function getTodos({token}) {
+export async function getTodos({ token }) {
     const response = await fetch(baseHost, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -17,7 +17,7 @@ export async function getTodos({token}) {
     return data;
 }
 
-export async function postTodo(text) {
+export async function postTodo({ text, token }) {
     const response = await fetch(baseHost, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ export async function postTodo(text) {
     return data;
 }
 
-export async function putTodo({ text, id }) {
+export async function putTodo({ text, id, token }) {
     const response = await fetch(baseHost + `/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ export async function putTodo({ text, id }) {
     return data;
 }
 
-export async function deleteTodo({ text, id }) {
+export async function deleteTodo({ text, id, token }) {
     const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -77,7 +77,7 @@ export async function deleteTodo({ text, id }) {
     return data;
 }
 
-export async function getUsersList() {
+export async function getUsersList({ token }) {
     const response = await fetch(userHost, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -103,6 +103,7 @@ export function signUp({ login, name, password }) {
         }),
     }).then((response) => {
         if (response.status === 400) {
+            alert("Такой пользователь уже существует");
             throw new Error("Такой пользователь уже существует");
         }
         return response.json();
@@ -118,6 +119,7 @@ export function signIn({ login, password }) {
         }),
     }).then((response) => {
         if (response.status === 400) {
+            alert("Неверный логин или пароль");
             throw new Error("Неверный логин или пароль");
         }
         return response.json();

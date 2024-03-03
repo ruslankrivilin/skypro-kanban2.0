@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 
-export const BodySignup = styled.body`
+export const BodySignup = styled.div`
   width: 100%;
   height: 100%;
   font-family: "Roboto", sans-serif;

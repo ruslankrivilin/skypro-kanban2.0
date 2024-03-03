@@ -1,6 +1,6 @@
 import { Container, PopExitBlock, PopExitFormGroup, PopExitNo, PopExitTtl, PopExitYes, PopExites } from "./PopExit.styled";
 
-function PopExit(logout) {
+function PopExit({logout}) {
     return (
         <PopExites>
             <Container>
