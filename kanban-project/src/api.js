@@ -93,12 +93,12 @@ export async function getUsersList({ token }) {
     return data;
 }
 
-export function signUp({ login, forename, password }) {
+export function signUp({ login, name, password }) {
     return fetch(userHost, {
         method: "POST",
         body: JSON.stringify({
             login,
-            forename,
+            name,
             password,
         }),
     }).then((response) => {

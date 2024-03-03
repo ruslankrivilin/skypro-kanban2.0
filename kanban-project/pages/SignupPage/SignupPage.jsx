@@ -6,7 +6,7 @@ import { useState } from "react";
 import { signUp } from "../../src/api";
 
 export default function SignupPage({login}) {
-    const [regData, setRegData] = useState({ forename: "", login: "", password: "" })
+    const [regData, setRegData] = useState({ login: "", name: "", password: "" })
 
     const handleInputChange = (e) => {
         const { name, value } = e.target; // Извлекаем имя поля и его значение
@@ -35,10 +35,10 @@ export default function SignupPage({login}) {
                         </ModalTtDiv>
                         <ModalFormatLoginForm>
                             <ModalInput class="modal__input first-name" 
-                            value={regData.forename}
+                            value={regData.name}
                             onChange={handleInputChange}
                             type="text" 
-                            name="forename" 
+                            name="name" 
                             id="first-name" 
                             placeholder="Имя">
                             </ModalInput>
