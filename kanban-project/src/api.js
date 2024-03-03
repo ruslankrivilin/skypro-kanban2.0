@@ -103,6 +103,7 @@ export function signUp({ login, name, password }) {
         }),
     }).then((response) => {
         if (response.status === 400) {
+            alert("Такой пользователь уже существует");
             throw new Error("Такой пользователь уже существует");
         }
         return response.json();
@@ -118,6 +119,7 @@ export function signIn({ login, password }) {
         }),
     }).then((response) => {
         if (response.status === 400) {
+            alert("Неверный логин или пароль");
             throw new Error("Неверный логин или пароль");
         }
         return response.json();
