@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const PopExites = styled.div`
-  display: none;
+  
   width: 100%;
   height: 100%;
   min-width: 320px;
@@ -39,7 +39,7 @@ export const PopExitBlock = styled.div`
 
 export const PopExitTtl = styled.div`
   text-align: center;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 30px;
   letter-spacing: -0.4px;
