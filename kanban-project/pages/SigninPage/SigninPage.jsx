@@ -2,8 +2,14 @@ import { useState } from "react";
 import { ModalInput } from "../SignupPage/SignupPage.styled";
 import { BodySignin, ContainerSigninDiv, ModalBlockDiv, ModalBtnEnter, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalTtDiv, WraperSigninDiv } from "./SigninPage.styled";
 import { signIn } from "../../src/api";
+import { useUser } from "../../src/hooks/useUser";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "../../src/styled/lib/appRoutes";
 
-export default function SigninPage({login}) {
+export default function SigninPage() {
+    const { login } = useUser();
+    const navigate = useNavigate();
+
     const [loginData, setLoginData] = useState({ login: "", password: "" })
 
     const handleInputChange = (e) => {
@@ -15,9 +21,10 @@ export default function SigninPage({login}) {
         });
     };
 
-    const handleLogin = async() => {
+    const handleLogin = async () => {
         await signIn(loginData).then((data) => {
             login(data.user)
+            navigate(appRoutes.MAIN);
         })
     };
 
