@@ -1,11 +1,9 @@
 import { format } from 'date-fns';
-import { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import "react-day-picker/dist/style.css";
 import ru from "date-fns/locale/ru";
 
-export default function Calendar() {
-  const [selectedDate, setSelectedDate] = useState(null);
+export default function Calendar({selectedDate, setSelectedDate}) {
 
   let footer = <p>Пожалуйста, выберите дату:</p>;
   if (selectedDate) {
@@ -17,6 +15,7 @@ export default function Calendar() {
       selected={selectedDate}
       onSelect={setSelectedDate}
       footer={footer}
+      locale={ru}
     />
   );
 }

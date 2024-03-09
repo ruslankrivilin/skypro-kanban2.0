@@ -82,7 +82,7 @@ export const Subttl = styled.div`
   line-height: 1;
 `
 
-export const ForrmNewInput = styled.div`
+export const ForrmNewInput = styled.input`
   width: 100%;
   outline: none;
   padding: 14px;
@@ -95,7 +95,7 @@ export const ForrmNewInput = styled.div`
   margin: 20px 0;
 `
 
-export const FormNewArea = styled.div`
+export const FormNewArea = styled.textarea`
   width: 100%;
   outline: none;
   padding: 14px;
@@ -124,3 +124,37 @@ export const FormNewCreatButton = styled.div`
   float: right;
   cursor: pointer;
 `
+
+export const RadioToolbar = styled.div`
+    /* display: none; */
+  cursor: pointer;
+`
+
+export const RadioToolbarLabel = styled.div`
+    display: inline-block;
+    padding: 2px 9px;
+    cursor: pointer;
+    border: 1px solid #DAD0FF;
+`
+
+export const RadioToolbarChecked = styled.div`
+   background-color: #d0ffb7;
+    border: 1px solid #1CA92E;
+  cursor: pointer;
+`
+
+
+// .radio-toolbar input[type="radio"] {
+//     display: none;
+// }
+
+
+// .radio-toolbar input[type="radio"]:checked+label {
+//     background-color: #d0ffb7;
+//     border: 1px solid #1CA92E;
+// }
+
+// .radio-toolbar label:hover {
+//     background-color: #d0ffb7;
+//     border: 1px solid #1CA92E;
+// }
