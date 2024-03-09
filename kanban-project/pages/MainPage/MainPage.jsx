@@ -12,7 +12,7 @@ function MainPage() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const {user} = (useUser)
+  const {user} = useUser()
 
 
   useEffect(() => {

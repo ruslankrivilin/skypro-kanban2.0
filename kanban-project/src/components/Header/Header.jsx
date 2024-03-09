@@ -25,7 +25,9 @@ function Header({ addCard }) {
                     </div>
                     <nav className="header__nav">
                         <button onClick={addCard} className="header__btn-main-new _hover01" id="btnMainNew">
-                            Создать новую задачу
+                            <Link to={appRoutes.TASK}>
+                                Создать новую задачу
+                            </Link>
                         </button>
                         <div onClick={togglePopup} className="header__user _hover02">
                             Ivan Ivanov
