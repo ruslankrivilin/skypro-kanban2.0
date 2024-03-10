@@ -1,12 +1,14 @@
 // import PopBrowse from "../../src/components/popupes/PopBrowse/PopBrowse";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./TaskPage.styled.js";
 import Calendar from "../../src/components/Calendar/Calendar";
 import { appRoutes } from "../../src/styled/lib/appRoutes.js";
 import { useState } from "react";
+import { postTodo } from "../../src/api.js";
 
 export default function TaskPage() {
     const [selectedDate, setSelectedDate] = useState(null);
+    const navigate = useNavigate();
 
     const [newTask, setNewTask] = useState({
         title: "",
@@ -14,14 +16,27 @@ export default function TaskPage() {
         topic: ""
     });
 
-    const handleFormSubmit = (e) => {
+    // const handleFormSubmit = (e) => {
+    //     e.preventDefault();
+    //     const taskData = {
+    //         ...newTask, date: selectedDate,
+
+    //     }
+    //     console.log(taskData)
+    //     navigate(appRoutes.MAIN);
+    // }
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         const taskData = {
             ...newTask, date: selectedDate,
 
         }
+        await postTodo(newTask).then(() => {
+            
+            navigate(appRoutes.MAIN);
+        })
         console.log(taskData)
-    }
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target; // Извлекаем имя поля и его значение
@@ -67,6 +82,7 @@ export default function TaskPage() {
                             </S.PopNewCardForm>
                             <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
                         </S.PopNewCardWrap>
+                        <S.Subttl htmlFor="textArea" className="subttl">Категории</S.Subttl>
                         {/* <div className="pop-new-card__categories categories">
                             <p className="categories__p subttl">Категория</p>
                             <div className="categories__themes">
