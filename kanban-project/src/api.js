@@ -17,19 +17,21 @@ export async function getTodos({ token }) {
     return data;
 }
 
-export async function postTodo({ text, token }) {
+//Добавить задачу
+export async function postTodo({ taskData, token }) {
     const response = await fetch(baseHost, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
         method: "POST",
         body: JSON.stringify({
-            text,
+            taskData,
         })
     });
 
 
     if (!response.status === 201) {
+        alert("Заполните пустые строки")
         throw new Error("Ошибка");
     }
 
@@ -37,6 +39,7 @@ export async function postTodo({ text, token }) {
     return data;
 }
 
+// Изменить задачу
 export async function putTodo({ text, id, token }) {
     const response = await fetch(baseHost + `/${id}`, {
         headers: {
@@ -57,6 +60,7 @@ export async function putTodo({ text, id, token }) {
     return data;
 }
 
+// Удалить задачу
 export async function deleteTodo({ text, id, token }) {
     const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
         headers: {
@@ -93,6 +97,7 @@ export async function getUsersList({ token }) {
     return data;
 }
 
+// Вход
 export function signUp({ login, name, password }) {
     return fetch(userHost, {
         method: "POST",
@@ -110,6 +115,8 @@ export function signUp({ login, name, password }) {
     })
 }
 
+
+// Регистрация
 export function signIn({ login, password }) {
     return fetch(userHost + "/login", {
         method: "POST",
