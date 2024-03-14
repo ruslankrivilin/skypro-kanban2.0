@@ -39,7 +39,7 @@ export default function SignupPage() {
                             <h2>Регистрация</h2>
                         </ModalTtDiv>
                         <ModalFormatLoginForm>
-                            <ModalInput class="modal__input first-name" 
+                            <ModalInput className="modal__input first-name" 
                             value={regData.name}
                             onChange={handleInputChange}
                             type="text" 
@@ -47,7 +47,7 @@ export default function SignupPage() {
                             id="first-name" 
                             placeholder="Имя">
                             </ModalInput>
-                            <ModalInput class="modal__input login"
+                            <ModalInput className="modal__input login"
                             value={regData.login}
                             onChange={handleInputChange} 
                             type="text" 
@@ -55,7 +55,7 @@ export default function SignupPage() {
                             id="loginReg" 
                             placeholder="Эл. почта">
                             </ModalInput>
-                            <ModalInput class="modal__input password-first" 
+                            <ModalInput className="modal__input password-first" 
                             value={regData.password}
                             onChange={handleInputChange}
                             type="password" 

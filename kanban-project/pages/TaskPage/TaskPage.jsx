@@ -31,8 +31,8 @@ export default function TaskPage() {
             ...newTask, date: selectedDate,
 
         }
-        await postTodo(newTask).then(() => {
-            
+        await postTodo({newTask}).then((todo) => {
+            console.log(todo)
             navigate(appRoutes.MAIN);
         })
         console.log(taskData)

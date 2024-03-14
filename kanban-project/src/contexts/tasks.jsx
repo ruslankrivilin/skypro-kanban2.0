@@ -1,27 +1,15 @@
-// import { createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 
-// function getUserFromLocalStorage() {
-//     try {
-//         return JSON.parse(localStorage.getItem("user"))
-//     } catch (error) {
-//         console.log(error);
-//         return null
-//     }
-// }
+export const TasksContext = createContext(null);
 
-// export const UserContext = createContext(null);
-// export const UserProvider = ({children}) => {
-//     const [tasks, setTasks] = useState(getUserFromLocalStorage());
-//     function login(newUser) {
-//         setTasks(newUser)
-//     }
-//     function logout() {
-//         setTasks(null);
-//     }
-//     return(
-//         <UserContext.Provider value={{tasks, login, logout}}>
-//             {children}
-//         </UserContext.Provider>
-//     )
-// }
+export const TaskProvider = ({ children }) => {
+
+    const [tasks, setTasks] = useState([]);
+
+    return (
+        <TasksContext.Provider value={{ tasks, setTasks }}>
+            {children}
+        </TasksContext.Provider>
+    )
+}

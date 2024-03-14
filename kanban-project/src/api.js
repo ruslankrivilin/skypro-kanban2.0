@@ -18,15 +18,15 @@ export async function getTodos({ token }) {
 }
 
 //Добавить задачу
-export async function postTodo({ taskData, token }) {
+export async function postTodo({ newTask, token }) {
     const response = await fetch(baseHost, {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${ token }`,
         },
         method: "POST",
-        body: JSON.stringify({
-            taskData,
-        })
+        body: JSON.stringify(
+            newTask,
+        )
     });
 
 
