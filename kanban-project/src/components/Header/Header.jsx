@@ -13,26 +13,26 @@ function Header({ addCard }) {
         <S.StyledHeader>
             <Container>
                 <S.HeaderBlock>
-                    <div className="header__logo _show _light">
+                    <S.HeaderLogoShow>
                         <a href="" target="_self">
                             <img src="./images/logo.png" alt="logo" />
                         </a>
-                    </div>
-                    <div className="header__logo _dark">
+                    </S.HeaderLogoShow>
+                    <S.HeaderLogoDark>
                         <a href="" target="_self">
                             <img src="./images/logo_dark.png" alt="logo" />
                         </a>
-                    </div>
-                    <nav className="header__nav">
-                        <button onClick={addCard} className="header__btn-main-new _hover01" id="btnMainNew">
+                    </S.HeaderLogoDark>
+                    <S.HeaderNav>
+                        <S.HeaderBtnMainNew onClick={addCard} className="header__btn-main-new _hover01" id="btnMainNew">
                             <Link to={appRoutes.TASK}>
                                 Создать новую задачу
                             </Link>
-                        </button>
-                        <div onClick={togglePopup} className="header__user _hover02">
+                        </S.HeaderBtnMainNew>
+                        <S.HeaderUser onClick={togglePopup} className="header__user _hover02">
                             Ivan Ivanov
-                        </div>
-                        {isOpened && (<div
+                        </S.HeaderUser>
+                        {isOpened && (<S.HeaderpopUserSet
                             className="header__pop-user-set pop-user-set"
                             id="user-set-target"
                         >
@@ -48,8 +48,8 @@ function Header({ addCard }) {
                                     Выйти
                                 </span>
                             </Link>
-                        </div>)}
-                    </nav>
+                        </S.HeaderpopUserSet>)}
+                    </S.HeaderNav>
                 </S.HeaderBlock>
             </Container>
         </S.StyledHeader>

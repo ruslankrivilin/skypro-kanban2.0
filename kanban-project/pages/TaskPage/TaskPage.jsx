@@ -5,8 +5,12 @@ import Calendar from "../../src/components/Calendar/Calendar";
 import { appRoutes } from "../../src/styled/lib/appRoutes.js";
 import { useState } from "react";
 import { postTodo } from "../../src/api.js";
+import { useUser } from "../../src/hooks/useUser.js";
+import { useTasks } from "../../src/hooks/useTasks.js";
 
 export default function TaskPage() {
+    const { user } = useUser();
+    const { setCards } = useTasks();
     const [selectedDate, setSelectedDate] = useState(null);
     const navigate = useNavigate();
 
@@ -28,14 +32,16 @@ export default function TaskPage() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const taskData = {
-            ...newTask, date: selectedDate,
+            ...newTask, 
+            date: selectedDate,
+            token: user.token,
 
         }
-        await postTodo({newTask}).then((todo) => {
-            console.log(todo)
+        await postTodo(taskData).then((data) => {
+            setCards(data.tasks);
+            console.log(data.tasks);
             navigate(appRoutes.MAIN);
-        })
-        console.log(taskData)
+        });
     };
 
     const handleInputChange = (e) => {
