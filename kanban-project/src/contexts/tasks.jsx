@@ -5,10 +5,10 @@ export const TasksContext = createContext(null);
 
 export const TaskProvider = ({ children }) => {
 
-    const [tasks, setTasks] = useState([]);
+    const [cards, setCards] = useState([]);
 
     return (
-        <TasksContext.Provider value={{ tasks, setTasks }}>
+        <TasksContext.Provider value={{ cards, setCards }}>
             {children}
         </TasksContext.Provider>
     )

@@ -71,6 +71,7 @@ export const PopExitYes = styled.div`
     letter-spacing: -0.14px;
     color: #FFFFFF;
     margin-right: 10px;
+    cursor: pointer;
 `
 
 export const PopExitNo = styled.div`
@@ -88,4 +89,5 @@ export const PopExitNo = styled.div`
   font-weight: 500;
   letter-spacing: -0.14px;
   color: #FFFFFF;
+  cursor: pointer;
 `

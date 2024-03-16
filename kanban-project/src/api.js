@@ -1,4 +1,3 @@
-// const token = "bgc0b8awbwas6g5g5k5o5s5w606g37w3cc3bo3b83k39s3co3c83c03ck";
 const baseHost = "https://wedev-api.sky.pro/api/kanban";
 const userHost = "https://wedev-api.sky.pro/api/user";
 
@@ -18,21 +17,24 @@ export async function getTodos({ token }) {
 }
 
 //Добавить задачу
-export async function postTodo({ newTask, token }) {
+export async function postTodo( taskData ) {
     const response = await fetch(baseHost, {
         headers: {
-            Authorization: `Bearer ${ token }`,
+            Authorization: `Bearer ${ taskData.token }`,
         },
         method: "POST",
-        body: JSON.stringify(
-            newTask,
-        )
+        body: JSON.stringify({
+            title: taskData.title,
+            topic: taskData.topic,
+            description: taskData.description,
+            date: taskData.date,
+        })
     });
 
 
     if (!response.status === 201) {
         alert("Заполните пустые строки")
-        throw new Error("Ошибка");
+        throw new Error("Ошибка отправки");
     }
 
     const data = await response.json();

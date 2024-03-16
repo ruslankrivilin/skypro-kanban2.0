@@ -23,7 +23,7 @@ function MainPage() {
     }).catch((error) => {
       alert(error)
     })
-  }, [user])
+  }, [user, setCards])
 
   function addCard() {
     const newCard = {
