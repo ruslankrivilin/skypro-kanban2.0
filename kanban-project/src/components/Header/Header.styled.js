@@ -75,6 +75,22 @@ export const HeaderpopUserSet = styled.div`
   z-index: 2;
 `;
 
+export const HeaderExit = styled.span`
+  width: 100px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 0.7px solid var(--palette-navy-60, #565EEF);
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  color: #565EEF
+`
 // export const CheckBox = styled.header`
 
 // `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { hover03 } from "../../../../common/Common.styled";
 
 
 export const PopExites = styled.div`
@@ -11,6 +12,9 @@ export const PopExites = styled.div`
   top: 0;
   left: 0;
   z-index: 5;
+  &:target {
+    display: block;
+  }
 `
 
 export const Container = styled.div`
@@ -46,21 +50,22 @@ export const PopExitTtl = styled.div`
   margin-bottom: 20px;
 `
 
-
-
 export const PopExitFormGroup = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media only screen and (max-width: 375px) {
+    display: block;
+  }
 `
 
 export const PopExitYes = styled.div`
     width: 153px;
     height: 30px;
-    background-color: #565EEF;
+    background-color: transparent;
     border-radius: 4px;
-    border: none;
+    border: 0.7px solid var(--palette-navy-60, #565EEF);
     outline: none;
     display: flex;
     align-items: center;
@@ -69,9 +74,27 @@ export const PopExitYes = styled.div`
     line-height: 21px;
     font-weight: 500;
     letter-spacing: -0.14px;
-    color: #FFFFFF;
+    color: #565EEF;
     margin-right: 10px;
     cursor: pointer;
+    a {
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+    @media only screen and (max-width: 375px) {
+    width: 100%;
+    height: 100%;
+    color: #565eef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+    ${hover03}
 `
 
 export const PopExitNo = styled.div`
@@ -88,6 +111,20 @@ export const PopExitNo = styled.div`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #FFFFFF;
+  color: #565eef;
   cursor: pointer;
+  a {
+    width: 100%;
+    height: 100%;
+    color: #565eef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media only screen and (max-width: 375px) {
+    width: 100%;
+    height: 40px;
+  }
+
+  ${hover03}
 `

@@ -25,7 +25,7 @@ function Header({ addCard }) {
                     </S.HeaderLogoDark>
                     <S.HeaderNav>
                         <S.HeaderBtnMainNew onClick={addCard} className="header__btn-main-new _hover01" id="btnMainNew">
-                            <Link to={appRoutes.TASK}>
+                            <Link to={appRoutes.ADD_TASK}>
                                 Создать новую задачу
                             </Link>
                         </S.HeaderBtnMainNew>
@@ -44,9 +44,11 @@ function Header({ addCard }) {
                                 <input type="checkbox" className="checkbox" name="checkbox" />
                             </div>
                             <Link to={appRoutes.EXIT}>
+                                <S.HeaderExit>
                                 <span type="button" className="_hover03">
                                     Выйти
                                 </span>
+                                </S.HeaderExit>
                             </Link>
                         </S.HeaderpopUserSet>)}
                     </S.HeaderNav>
