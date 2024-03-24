@@ -2,7 +2,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../styled/lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import { useTasks } from "../../../hooks/useTasks";
-import { topicHeader } from "../../../styled/lib/topic";
+// import { topicHeader } from "../../../styled/lib/topic";
 import * as S from "./PopBrowse.styled";
 
 export default function PopBrowse() {
@@ -20,11 +20,14 @@ export default function PopBrowse() {
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
               <S.PopBroweTitle>Название задачи:</S.PopBroweTitle>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">{openedCard?.title}</p>
-              </div>
+              <S.PopBroweColor>
+                <p>{openedCard?.topic}</p>
+              </S.PopBroweColor>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
+              <div>
+                <p>Статус:</p>
+              </div>
               <S.PopBrowseStatusTitle>
                 {openedCard?.status}
               </S.PopBrowseStatusTitle>
@@ -62,14 +65,14 @@ export default function PopBrowse() {
               </S.PopBrowseForm>
               <Calendar />
             </S.PopBrowseWrap>
-            <S.ThemeDownCategories>
+            {/* <S.ThemeDownCategories>
               <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
               <S.OpenedCardTheme
                 $themeColor={topicHeader[openedCard?.topic]}
               >
-                <p className="_orange">{openedCard?.topic}</p>
+                <p>{openedCard?.topic}</p>
               </S.OpenedCardTheme>
-            </S.ThemeDownCategories>
+            </S.ThemeDownCategories> */}
             <S.PopBrowseButtonBrowse>
               <S.ButtonGroup>
                 <S.ButtonChengeDelete>

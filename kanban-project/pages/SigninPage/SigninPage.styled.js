@@ -38,6 +38,7 @@ width: 100%;
   font-weight: 500;
   letter-spacing: -0.14px;
   color: #FFFFFF;
+  cursor: pointer;
 `
 
 export const ModalDiv = styled.div`

@@ -92,6 +92,9 @@ export default function PopNewCard() {
                                     </S.FormNewArea>
                                 </S.FormNewBlock>
                             </S.PopNewCardForm>
+                            <div>
+                                <p>Дата</p>
+                            </div>
                             <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
                         </S.PopNewCardWrap>
                         <S.Subttl htmlFor="textArea" className="subttl">Категории</S.Subttl>

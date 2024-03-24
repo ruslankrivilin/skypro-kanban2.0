@@ -40,6 +40,7 @@ export const ModalBtnSignup = styled.button`
   font-weight: 500;
   letter-spacing: -0.14px;
   color: #FFFFFF;
+  cursor: pointer;
   `
 export const ModalInput = styled.input`
 width: 100%;
