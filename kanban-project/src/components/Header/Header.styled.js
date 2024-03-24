@@ -74,8 +74,12 @@ export const HeaderpopUserSet = styled.div`
   text-align: center;
   z-index: 2;
 `;
-
+export const Lala = styled.div`
+  display: flex;
+  justify-content: center;`
 export const HeaderExit = styled.span`
+  display: flex;
+  justify-content: center;
   width: 80px;
   height: 30px;
   background-color: transparent;

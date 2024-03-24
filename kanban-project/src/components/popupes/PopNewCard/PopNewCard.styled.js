@@ -113,6 +113,9 @@ export const FormNewArea = styled.textarea`
 `
 
 export const FormNewCreatButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 132px;
   height: 30px;
   background-color: #565EEF;
@@ -128,8 +131,7 @@ export const FormNewCreatButton = styled.div`
 `
 
 export const RadioToolbar = styled.div`
-    /* display: none; */
-  cursor: pointer;
+
 `
 
 export const RadioToolbarLabel1 = styled.label`

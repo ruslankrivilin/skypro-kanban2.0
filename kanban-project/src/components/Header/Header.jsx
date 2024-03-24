@@ -33,7 +33,7 @@ function Header() {
                             Ivan Ivanov
                         </S.HeaderUser>
                         {isOpened && (<S.HeaderpopUserSet
-                            className="header__pop-user-set pop-user-set"
+                            
                             id="user-set-target"
                         >
                             {/* <a href="">x</a> */}
@@ -43,6 +43,7 @@ function Header() {
                                 <p>Темная тема</p>
                                 <input type="checkbox" className="checkbox" name="checkbox" />
                             </div>
+                            <S.Lala>
                             <Link to={appRoutes.EXIT}>
                                 <S.HeaderExit>
                                 <span type="button" className="_hover03">
@@ -50,6 +51,7 @@ function Header() {
                                 </span>
                                 </S.HeaderExit>
                             </Link>
+                            </S.Lala>
                         </S.HeaderpopUserSet>)}
                     </S.HeaderNav>
                 </S.HeaderBlock>

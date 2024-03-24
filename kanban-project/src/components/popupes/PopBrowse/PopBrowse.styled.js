@@ -80,11 +80,20 @@ export const PopBrowseStatus = styled.div`
   margin-bottom: 11px;
 `;
 export const PopBrowseStatusTitle = styled.p`
+  margin-top: 14px;
   margin-bottom: 14px;
   color: #000;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+  display: inline-block;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  color: #94A6BE;
+  background: #d5dce6;
+  margin-right: 7px;
+  
+  
 `;
 
 export const PopBrowseStatusThemes = styled.div`
@@ -250,3 +259,17 @@ export const OpenedCardTheme = styled.div`
     color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
   }
 `;
+
+export const PopBroweColor = styled.div`
+  display: inline-block;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  color: #9a48f1;
+  background: #e9d4ff;
+  margin-right: 7px;
+`
+
+// display: flex;
+// align-items: center;
+// justify-content: space-between;
+// margin-bottom: 18px;
