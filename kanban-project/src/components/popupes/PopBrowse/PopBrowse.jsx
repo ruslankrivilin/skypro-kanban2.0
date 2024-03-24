@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../styled/lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import { useTasks } from "../../../hooks/useTasks";
@@ -8,7 +8,11 @@ import * as S from "./PopBrowse.styled";
 export default function PopBrowse() {
   const { id } = useParams();
   const { cards } = useTasks();
-  const openedCard = cards.filter((card) => card._id === id);
+  console.log(cards);
+  const openedCard = cards.find((card) => card._id === id);
+  if (!openedCard) {
+    return <Navigate to={appRoutes.MAIN}/>
+  }
   return (
     <S.PopBrowseStyled>
       <S.PopBrowseContainer>
@@ -17,12 +21,12 @@ export default function PopBrowse() {
             <S.PopBrowseTopBlock>
               <S.PopBroweTitle>Название задачи:</S.PopBroweTitle>
               <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">{openedCard[0].title}</p>
+                <p className="_orange">{openedCard?.title}</p>
               </div>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.PopBrowseStatusTitle>
-                {openedCard[0].status}
+                {openedCard?.status}
               </S.PopBrowseStatusTitle>
               {/* <S.PopBrowseStatusThemes>
                 <div className="status__theme _hide">
@@ -52,7 +56,7 @@ export default function PopBrowse() {
                     name="text"
                     id="textArea01"
                     readOnly
-                    placeholder={openedCard[0].description}
+                    placeholder={openedCard?.description}
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
@@ -61,9 +65,9 @@ export default function PopBrowse() {
             <S.ThemeDownCategories>
               <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
               <S.OpenedCardTheme
-                $themeColor={topicHeader[openedCard[0].topic]}
+                $themeColor={topicHeader[openedCard?.topic]}
               >
-                <p className="_orange">{openedCard[0].topic}</p>
+                <p className="_orange">{openedCard?.topic}</p>
               </S.OpenedCardTheme>
             </S.ThemeDownCategories>
             <S.PopBrowseButtonBrowse>

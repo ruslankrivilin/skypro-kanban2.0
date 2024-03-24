@@ -38,10 +38,16 @@ export default function PopNewCard() {
 
         }
         await postTodo(taskData).then((data) => {
+            console.log(data);
+            if(data.error) {
+                return alert("Пожалуйста заполните все поля");
+            }
             setCards(data.tasks);
             console.log(data.tasks);
             navigate(appRoutes.MAIN);
-        });
+        }).catch((error) => {
+            alert(error.message);
+        }) 
     };
 
     const handleInputChange = (e) => {
@@ -103,36 +109,36 @@ export default function PopNewCard() {
                                 </div>
                             </div>
                         </div> */}
-                        <div className="prod_checbox">
+                        <S.ProdCheckbox>
                             <S.RadioToolbar>
-                                <input
+                                <S.InputRadio1
                                     type="radio"
                                     id="radio1"
                                     name="topic"
                                     value="Web Design"
                                     onChange={handleInputChange}
                                 />
-                                <S.RadioToolbarLabel htmlFor="radio1">Web Design</S.RadioToolbarLabel>
+                                <S.RadioToolbarLabel1 htmlFor="radio1">Web Design</S.RadioToolbarLabel1>
 
-                                <input
+                                <S.InputRadio1
                                     type="radio"
                                     id="radio2"
                                     name="topic"
                                     value="Research"
                                     onChange={handleInputChange}
                                 />
-                                <S.RadioToolbarLabel htmlFor="radio2">Research</S.RadioToolbarLabel>
+                                <S.RadioToolbarLabel2 htmlFor="radio2">Research</S.RadioToolbarLabel2>
 
-                                <input
+                                <S.InputRadio1
                                     type="radio"
                                     id="radio3"
                                     name="topic"
                                     value="Copywriting"
                                     onChange={handleInputChange}
                                 />
-                                <S.RadioToolbarLabel htmlFor="radio3">Copywriting</S.RadioToolbarLabel>
+                                <S.RadioToolbarLabel3 htmlFor="radio3">Copywriting</S.RadioToolbarLabel3>
                             </S.RadioToolbar>
-                        </div>
+                        </S.ProdCheckbox>
                         <S.FormNewCreatButton onClick={handleFormSubmit} id="btnCreate">Создать задачу</S.FormNewCreatButton>
                     </S.PopNewCardContent>
                 </S.PopNewCardBlock>

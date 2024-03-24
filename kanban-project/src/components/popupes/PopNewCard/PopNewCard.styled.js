@@ -81,6 +81,7 @@ export const Subttl = styled.div`
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+  margin-bottom: 20px;
 `
 
 export const ForrmNewInput = styled.input`
@@ -131,31 +132,65 @@ export const RadioToolbar = styled.div`
   cursor: pointer;
 `
 
-export const RadioToolbarLabel = styled.div`
-    display: inline-block;
-    padding: 2px 9px;
-    cursor: pointer;
-    border: 1px solid #DAD0FF;
+export const RadioToolbarLabel1 = styled.label`
+  display: inline-block;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  color: #ff6d00;
+  background: #ffe4c2;
+  cursor: pointer;
+  margin-right: 7px;
+  opacity: 40%;
+
+  &:hover {
+    opacity: 100%;
+  }
+`
+
+export const RadioToolbarLabel2 = styled.label`
+  display: inline-block;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  color: #06b16e;
+  background: #b4fdd1;
+  cursor: pointer;
+  margin-right: 7px;
+  opacity: 40%;
+
+  &:hover {
+    opacity: 100%;
+  }
+`
+
+export const RadioToolbarLabel3 = styled.label`
+  display: inline-block;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  color: #9a48f1;
+  background: #e9d4ff;
+  cursor: pointer;
+  margin-right: 7px;
+  opacity: 40%;
+
+  &:hover {
+    opacity: 100%;
+  }
 `
 
 export const RadioToolbarChecked = styled.div`
-   background-color: #d0ffb7;
-    border: 1px solid #1CA92E;
+  background-color: #d0ffb7;
+  border: 1px solid #1CA92E;
   cursor: pointer;
 `
 
+export const ProdCheckbox = styled.div`
 
-// .radio-toolbar input[type="radio"] {
-//     display: none;
-// }
+`
 
+export const InputRadio1 = styled.input`
+  display: none;
 
-// .radio-toolbar input[type="radio"]:checked+label {
-//     background-color: #d0ffb7;
-//     border: 1px solid #1CA92E;
-// }
-
-// .radio-toolbar label:hover {
-//     background-color: #d0ffb7;
-//     border: 1px solid #1CA92E;
-// }
+&:checked + label {
+  opacity: 100%;
+}
+`
