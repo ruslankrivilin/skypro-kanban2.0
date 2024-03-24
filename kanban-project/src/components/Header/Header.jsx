@@ -4,7 +4,7 @@ import { Container } from "../../styled/Common.styled.js";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../styled/lib/appRoutes.js";
 
-function Header({ addCard }) {
+function Header() {
     const [isOpened, setIsOpened] = useState(false);
     function togglePopup() {
         setIsOpened((prev) => !prev)
@@ -24,7 +24,7 @@ function Header({ addCard }) {
                         </a>
                     </S.HeaderLogoDark>
                     <S.HeaderNav>
-                        <S.HeaderBtnMainNew onClick={addCard} className="header__btn-main-new _hover01" id="btnMainNew">
+                        <S.HeaderBtnMainNew className="header__btn-main-new _hover01" id="btnMainNew">
                             <Link to={appRoutes.ADD_TASK}>
                                 Создать новую задачу
                             </Link>

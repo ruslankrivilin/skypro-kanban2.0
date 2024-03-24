@@ -5,14 +5,15 @@ import Column from "../../src/components/Column/Column";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../src/api";
 import { useUser } from "../../src/hooks/useUser";
+import { useTasks } from "../../src/hooks/useTasks";
 
 
 function MainPage() {
 
-  const [cards, setCards] = useState([]);
+  const {cards, setCards} = useTasks();
   const [isLoading, setIsLoading] = useState(true);
 
-  const {user} = useUser()
+  const {user} = useUser();
 
 
   useEffect(() => {
@@ -24,17 +25,6 @@ function MainPage() {
       alert(error)
     })
   }, [user, setCards])
-
-  function addCard() {
-    const newCard = {
-      id: cards.length + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    }
-    setCards([...cards, newCard])
-  }
 
   const statusList = [
     "Без статуса",
@@ -48,7 +38,7 @@ function MainPage() {
     <>
       <div className="wrapper">
         <Outlet />
-        <Header addCard={addCard} />
+        <Header />
         {isLoading ? ("Загрузка...") : (
           <MainContent>
             {statusList.map((status) => (
