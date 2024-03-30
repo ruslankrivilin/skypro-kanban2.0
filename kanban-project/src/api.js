@@ -26,6 +26,7 @@ export async function postTodo( taskData ) {
         body: JSON.stringify({
             title: taskData.title,
             topic: taskData.topic,
+            status: taskData.status,
             description: taskData.description,
             date: taskData.date,
         })
@@ -42,14 +43,18 @@ export async function postTodo( taskData ) {
 }
 
 // Изменить задачу
-export async function putTodo({ text, id, token }) {
+export async function putTodo({ taskData, id, token }) {
     const response = await fetch(baseHost + `/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
         method: "PUT",
         body: JSON.stringify({
-            text,
+            "title": taskData.title,
+            "topic": taskData.topic,
+            "status": taskData.status,
+            "description": taskData.description,
+            "date": taskData.date,
         })
     });
 
