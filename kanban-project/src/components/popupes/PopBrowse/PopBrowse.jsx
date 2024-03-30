@@ -77,14 +77,7 @@ console.log(cancelClick)
     console.log(newCard);
     await postTodo({ token: userData.token, title: newCard.title, topic: newCard.topic, status: newCard.status, description: newCard.description })
 
-    //не работает окно добавления карточки
-    //не корректно работает удаление
-    //ошибка регистрации
-    // 1. контекст для карточки . копировать как user. не из localstorage
-    // 2. адаптировать под получение данных из контекста
-    // 3. функция добавления карточки.
-    // 4. setcards -> данные из context
-    // 5. редактирование задачи
+
 
     getTodos({ token: userData.token })
       .then((data) => {
