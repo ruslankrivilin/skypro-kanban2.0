@@ -4,10 +4,108 @@ import Calendar from "../../Calendar/Calendar";
 import { useTasks } from "../../../hooks/useTasks";
 // import { topicHeader } from "../../../styled/lib/topic";
 import * as S from "./PopBrowse.styled";
+import { useContext, useEffect, useState } from "react";
+import { useUser } from "../../../hooks/useUser";
+import { TasksContext } from "../../../contexts/tasks";
+import { getTodos, postTodo } from "../../../api";
 
 export default function PopBrowse() {
   const { id } = useParams();
   const { cards } = useTasks();
+  const [ setStoredValue] = useState({});
+  // storedValue,
+  const [isEdit, setIsEdit] = useState(false)
+
+  const cancelClick = () => {
+    //setModalData(storedValue)
+    setStoredValue({})
+    setIsEdit(false)
+  }
+console.log(cancelClick)
+  // const [card] = useState();
+  // const navigate = useNavigate();
+  const [selected, setSelected] = useState();
+  const { userData } = useUser();
+  const { setCards } = useContext(TasksContext);
+  const { cardId } = useParams()
+  console.log(cardId);
+  const card = cards.find(el => el._id === cardId);
+  const [status, setStatus] = useState(card.status)
+  console.log(status);
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+
+  //   setNewTask({
+  //     ...newTask,
+  //     [name]: value,
+  //   });
+  // };
+
+  // const handleEditMode = () => { 
+  //   const newCards = cards.map(item => {
+  //   if (item._id === cardId) { 
+  //   return { 
+  //     ...item,
+  //     ...newTask,
+  //      status: status
+  //     } 
+  //   } 
+  //   return item 
+  // }) 
+  // setCards(newCards); 
+  // setIsEdit(!isEdit); };
+
+  const [newTask, setNewTask] = useState({
+    title: card.title,
+    topic: card.topic,
+    description: card.description,
+    date: selected,
+    status: card.status,
+  });
+
+ let nowDate = new Date(newTask.date).toLocaleString();
+ console.log(nowDate);
+ console.log(newTask.date);
+ 
+
+  console.log(newTask);
+  const statuses = ["Без статуса", "Нужно сделать", "В работе", "Тестирование", "Готово"]
+  const addCard = async () => {
+    let newCard = {
+      ...newTask, date: selected
+    }
+    console.log(newCard);
+    await postTodo({ token: userData.token, title: newCard.title, topic: newCard.topic, status: newCard.status, description: newCard.description })
+
+    //не работает окно добавления карточки
+    //не корректно работает удаление
+    //ошибка регистрации
+    // 1. контекст для карточки . копировать как user. не из localstorage
+    // 2. адаптировать под получение данных из контекста
+    // 3. функция добавления карточки.
+    // 4. setcards -> данные из context
+    // 5. редактирование задачи
+
+    getTodos({ token: userData.token })
+      .then((data) => {
+        setCards(data.tasks);
+      })
+  };
+
+
+  useEffect(() => {
+    setNewTask({
+      ...newTask,
+      date: selected,
+    });
+  }, [newTask, selected])
+
+  // function editTaskHandler() {
+  //   setIsEdit(true)
+  //   // editTasks({ id: cardId, token: userData.token, title: newTask.title, date: newTask.date, description: newTask.description, status: newTask.status, topic: newTask.topic })
+  // }
+
+
   console.log(cards);
   const openedCard = cards.find((card) => card._id === id);
   if (!openedCard) {
@@ -27,6 +125,24 @@ export default function PopBrowse() {
             <S.PopBrowseStatus>
               <div>
                 <p>Статус:</p>
+                <div className="status__themes">
+                {isEdit ? (statuses.map((el, item) => (
+                  <div onClick={() => setStatus(el)}
+                    key={item}
+                    className={`status__theme ${el === status ? '_gray' : ""}`}>
+                    <p>{el}</p>
+                  </div>
+                ))
+
+                ) : (<div
+                  className="status__theme_gray">
+                  <p>{openedCard?.status}</p>
+                </div>)
+                }
+
+
+
+              </div>
               </div>
               <S.PopBrowseStatusTitle>
                 {openedCard?.status}
@@ -63,7 +179,7 @@ export default function PopBrowse() {
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar />
+              <Calendar  disabled={!isEdit} selected={selected} setSelected={setSelected} />
             </S.PopBrowseWrap>
             {/* <S.ThemeDownCategories>
               <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
@@ -75,7 +191,7 @@ export default function PopBrowse() {
             </S.ThemeDownCategories> */}
             <S.PopBrowseButtonBrowse>
               <S.ButtonGroup>
-                <S.ButtonChengeDelete>
+                <S.ButtonChengeDelete onClick={addCard}>
                   <a href="#">Редактировать задачу</a>
                 </S.ButtonChengeDelete>
                 <S.ButtonChengeDelete>
