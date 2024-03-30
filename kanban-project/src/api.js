@@ -24,7 +24,7 @@ export async function postTodo( taskData ) {
         },
         method: "POST",
         body: JSON.stringify({
-            title: taskData.title,
+            "title": taskData.title,
             topic: taskData.topic,
             status: taskData.status,
             description: taskData.description,
@@ -43,7 +43,7 @@ export async function postTodo( taskData ) {
 }
 
 // Изменить задачу
-export async function putTodo({ taskData, id, token }) {
+export async function putTodo({ token, id, taskData }) {
     const response = await fetch(baseHost + `/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -51,10 +51,10 @@ export async function putTodo({ taskData, id, token }) {
         method: "PUT",
         body: JSON.stringify({
             "title": taskData.title,
-            "topic": taskData.topic,
-            "status": taskData.status,
-            "description": taskData.description,
-            "date": taskData.date,
+            topic: taskData.topic,
+            status: taskData.status,
+            description: taskData.description,
+            date: taskData.date,
         })
     });
 
@@ -68,14 +68,18 @@ export async function putTodo({ taskData, id, token }) {
 }
 
 // Удалить задачу
-export async function deleteTodo({ text, id, token }) {
+export async function deleteTodo({ taskData, id, token }) {
     const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
         method: "DELETE",
         body: JSON.stringify({
-            text,
+            "title": taskData.title,
+            topic: taskData.topic,
+            status: taskData.status,
+            description: taskData.description,
+            date: taskData.date,
         })
     });
 

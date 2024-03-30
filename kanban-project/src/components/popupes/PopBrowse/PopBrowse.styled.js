@@ -62,6 +62,32 @@ export const PopBrowseContent = styled.div`
   opacity: 1;
   margin-bottom: 20px;
 `;
+export const StatusPsubTtlP = styled.div`
+
+`;
+export const StatusThemesDiv = styled.div`
+
+`;
+export const StatusThemeInput = styled.div`
+
+`;
+export const StatusThemeLabel = styled.div`
+
+`;
+export const StatusThemeActiveDiv = styled.div`
+
+`;
+export const BtnGroupDiv = styled.div`
+
+`;
+export const BtnEdit = styled.div`
+
+`;
+export const PopBrowseBtnExit = styled.div`
+
+`;
+
+
 
 export const PopBrowseTopBlock = styled.div`
   display: flex;
@@ -79,6 +105,7 @@ export const PopBroweTitle = styled.h3`
 export const PopBrowseStatus = styled.div`
   margin-bottom: 11px;
 `;
+
 export const PopBrowseStatusTitle = styled.p`
   margin-top: 14px;
   margin-bottom: 14px;

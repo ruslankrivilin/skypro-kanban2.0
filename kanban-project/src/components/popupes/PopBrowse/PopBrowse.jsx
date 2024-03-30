@@ -1,178 +1,186 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../styled/lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import { useTasks } from "../../../hooks/useTasks";
-// import { topicHeader } from "../../../styled/lib/topic";
 import * as S from "./PopBrowse.styled";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser } from "../../../hooks/useUser";
-import { TasksContext } from "../../../contexts/tasks";
-import { getTodos, postTodo } from "../../../api";
+import { TopicText } from "../../Card/Cardsitem.styled";
+import { deleteTodo, putTodo } from "../../../api";
+import { topicHeader } from "../../../styled/lib/topic";
 
 export default function PopBrowse() {
   const { id } = useParams();
-  const { cards } = useTasks();
-  const [ setStoredValue] = useState({});
-  // storedValue,
-  const [isEdit, setIsEdit] = useState(false)
+  const { user } = useUser();
+  const { cards, setCards } = useTasks();
+  const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isEdited, setIsEdited] = useState(false);
 
-  const cancelClick = () => {
-    //setModalData(storedValue)
-    setStoredValue({})
-    setIsEdit(false)
-  }
-console.log(cancelClick)
-  // const [card] = useState();
-  // const navigate = useNavigate();
-  const [selected, setSelected] = useState();
-  const { userData } = useUser();
-  const { setCards } = useContext(TasksContext);
-  const { cardId } = useParams()
-  console.log(cardId);
-  const card = cards.find(el => el._id === cardId);
-  const [status, setStatus] = useState(card.status)
-  console.log(status);
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
+  let card = cards.filter((card) => card._id == `${id}`);
 
-  //   setNewTask({
-  //     ...newTask,
-  //     [name]: value,
-  //   });
-  // };
-
-  // const handleEditMode = () => { 
-  //   const newCards = cards.map(item => {
-  //   if (item._id === cardId) { 
-  //   return { 
-  //     ...item,
-  //     ...newTask,
-  //      status: status
-  //     } 
-  //   } 
-  //   return item 
-  // }) 
-  // setCards(newCards); 
-  // setIsEdit(!isEdit); };
-
-  const [newTask, setNewTask] = useState({
-    title: card.title,
-    topic: card.topic,
-    description: card.description,
-    date: selected,
-    status: card.status,
+  const [editTask, setEditTask] = useState({
+    title: card[0].title,
+    description: card[0].description,
+    topic: card[0].topic,
+    status: card[0].status,
+    date: card[0].date,
   });
+  console.log(editTask);
 
- let nowDate = new Date(newTask.date).toLocaleString();
- console.log(nowDate);
- console.log(newTask.date);
- 
-
-  console.log(newTask);
-  const statuses = ["Без статуса", "Нужно сделать", "В работе", "Тестирование", "Готово"]
-  const addCard = async () => {
-    let newCard = {
-      ...newTask, date: selected
-    }
-    console.log(newCard);
-    await postTodo({ token: userData.token, title: newCard.title, topic: newCard.topic, status: newCard.status, description: newCard.description })
-
-
-
-    getTodos({ token: userData.token })
-      .then((data) => {
-        setCards(data.tasks);
+  const deleteTask = () => {
+    deleteTodo({ token: user.token, id: id })
+      .then((newCard) => {
+        setCards(newCard.tasks);
+        navigate(appRoutes.MAIN);
       })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const taskData = {
+      ...editTask,
+      date: selectedDate,
+    };
+    console.log(taskData);
+    putTodo({ token: user.token, id: id, taskData: taskData })
+      .then((newCard) => {
+        setCards(newCard.tasks);
+        navigate(appRoutes.MAIN);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+    // postTodos({ token: user.token, taskData })
+    //   .then((newCard) => {
+    //     setCards(newCard.tasks);
+    //     navigate(appRoutes.MAIN);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     alert(error);
+    //   });
+  };
 
-  useEffect(() => {
-    setNewTask({
-      ...newTask,
-      date: selected,
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditTask({
+      ...editTask,
+      [name]: value,
     });
-  }, [newTask, selected])
-
-  // function editTaskHandler() {
-  //   setIsEdit(true)
-  //   // editTasks({ id: cardId, token: userData.token, title: newTask.title, date: newTask.date, description: newTask.description, status: newTask.status, topic: newTask.topic })
+  };
+  // if (!openedCard) {
+  //   return <Navigate to={appRoutes.MAIN}/>
   // }
-
-
-  console.log(cards);
-  const openedCard = cards.find((card) => card._id === id);
-  if (!openedCard) {
-    return <Navigate to={appRoutes.MAIN}/>
-  }
   return (
     <S.PopBrowseStyled>
       <S.PopBrowseContainer>
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBroweTitle>Название задачи:</S.PopBroweTitle>
-              <S.PopBroweColor>
-                <p>{openedCard?.topic}</p>
+              <S.PopBroweTitle>Название задачи:  {card[0].title}</S.PopBroweTitle>
+              <S.PopBroweColor $themeColor={topicHeader[card[0].topic]}>
+              <TopicText $themeColor={topicHeader[card[0].topic]}>
+                  {card[0].topic}
+                </TopicText>
               </S.PopBroweColor>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
-              <div>
-                <p>Статус:</p>
-                <div className="status__themes">
-                {isEdit ? (statuses.map((el, item) => (
-                  <div onClick={() => setStatus(el)}
-                    key={item}
-                    className={`status__theme ${el === status ? '_gray' : ""}`}>
-                    <p>{el}</p>
-                  </div>
-                ))
+              <S.StatusPsubTtlP>Статус</S.StatusPsubTtlP>
+            {isEdited && (
+                <S.StatusThemesDiv>
+                  <S.StatusThemeInput
+                    type="radio"
+                    id="radio1"
+                    name="status"
+                    value="Без статуса"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio1">Без статуса</S.StatusThemeLabel>
 
-                ) : (<div
-                  className="status__theme_gray">
-                  <p>{openedCard?.status}</p>
-                </div>)
-                }
+                  <S.StatusThemeInput
+                    type="radio"
+                    id="radio2"
+                    name="status"
+                    value="Нужно сделать"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio2">Нужно сделать</S.StatusThemeLabel>
 
+                  <S.StatusThemeInput
+                    type="radio"
+                    id="radio3"
+                    name="status"
+                    value="В работе"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio3">В работе</S.StatusThemeLabel>
 
+                  <S.StatusThemeInput
+                    type="radio"
+                    id="radio4"
+                    name="status"
+                    value="Тестирование"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio4">Тестирование</S.StatusThemeLabel>
 
-              </div>
-              </div>
-              <S.PopBrowseStatusTitle>
-                {openedCard?.status}
-              </S.PopBrowseStatusTitle>
-              {/* <S.PopBrowseStatusThemes>
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </S.PopBrowseStatusThemes> */}
+                  <S.StatusThemeInput
+                    type="radio"
+                    id="radio5"
+                    name="status"
+                    value="Готово"
+                    onChange={handleInputChange}
+                  />
+                  <S.StatusThemeLabel htmlFor="radio5">Готово</S.StatusThemeLabel>
+                </S.StatusThemesDiv>
+              )}
+              {!isEdited && (
+                <S.StatusThemesDiv>
+                  <S.StatusThemeActiveDiv>{card[0].status}</S.StatusThemeActiveDiv>
+                </S.StatusThemesDiv>
+              )}
             </S.PopBrowseStatus>
+
             <S.PopBrowseWrap>
               <S.PopBrowseForm id="formBrowseCard" action="#">
                 <S.FormBrowseBlock>
                   <S.FormBrowseTitle htmlFor="textArea01">
                     Описание задачи
                   </S.FormBrowseTitle>
-                  <S.FormBrowseArea
-                    name="text"
-                    id="textArea01"
-                    readOnly
-                    placeholder={openedCard?.description}
-                  ></S.FormBrowseArea>
+                  {!isEdited && (
+                    <S.FormBrowseArea
+                      onChange={handleInputChange}
+                      name="description"
+                      id="textArea01"
+                      readOnly=""
+                      placeholder="Введите описание задачи..."
+                      defaultValue={card[0].description}
+                      disabled={true}
+                    />
+                  )}
+                  {isEdited && (
+                    <S.FormBrowseArea
+                      onChange={handleInputChange}
+                      name="description"
+                      id="textArea01"
+                      readOnly=""
+                      placeholder="Введите описание задачи..."
+                      defaultValue={card[0].description}
+                      disabled={false}
+                    />
+                  )}
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar  disabled={!isEdit} selected={selected} setSelected={setSelected} />
+              <Calendar
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+              />
             </S.PopBrowseWrap>
             {/* <S.ThemeDownCategories>
               <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
@@ -182,40 +190,49 @@ console.log(cancelClick)
                 <p>{openedCard?.topic}</p>
               </S.OpenedCardTheme>
             </S.ThemeDownCategories> */}
-            <S.PopBrowseButtonBrowse>
+            {!isEdited && (<S.PopBrowseButtonBrowse>
               <S.ButtonGroup>
-                <S.ButtonChengeDelete onClick={addCard}>
-                  <a href="#">Редактировать задачу</a>
+                <S.ButtonChengeDelete 
+                onClick={() => {
+                      setIsEdited(!isEdited);
+                    }}>
+                  Редактировать задачу
                 </S.ButtonChengeDelete>
-                <S.ButtonChengeDelete>
-                  <a href="#">Удалить задачу</a>
+                <S.ButtonChengeDelete onClick={deleteTask}>
+                Удалить задачу
                 </S.ButtonChengeDelete>
               </S.ButtonGroup>
               <Link to={appRoutes.MAIN}>
                 <S.ButtonClose>Закрыть</S.ButtonClose>
               </Link>
-            </S.PopBrowseButtonBrowse>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <Link to={appRoutes.MAIN}>
-                <span className="btn-edit__close _btn-bg _hover01">
-                  Закрыть
-                </span>
-              </Link>
-            </div>
+            </S.PopBrowseButtonBrowse>)}
+            {isEdited && (
+            <S.BtnBrowseDiv>
+            <S.BtnGroupDiv>
+              <S.BtnEdit
+                onClick={handleFormSubmit}
+              >
+                Сохранить
+              </S.BtnEdit>
+              <S.BtnEdit
+                onClick={() => {
+                  setIsEdited(!isEdited);
+                }}
+              >
+                Отменить
+              </S.BtnEdit>
+
+              <S.BtnEdit
+                onClick={deleteTask}
+              >
+                Удалить задачу
+              </S.BtnEdit>
+            </S.BtnGroupDiv>
+            <Link to={appRoutes.MAIN}>
+              <S.PopBrowseBtnExit>Закрыть</S.PopBrowseBtnExit>
+            </Link>
+          </S.BtnBrowseDiv>
+        )}
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>
