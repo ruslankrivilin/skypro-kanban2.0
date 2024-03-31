@@ -63,19 +63,45 @@ export const PopBrowseContent = styled.div`
   margin-bottom: 20px;
 `;
 export const StatusPsubTtlP = styled.div`
+  padding-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
 
 `;
 export const StatusThemesDiv = styled.div`
 
+/* width: Fixed (136px)px;
+height: Hug (30px)px;
+padding: 10px 14px 10px 14px;
+gap: 0px;
+border-radius: 24px 0px 0px 0px;
+opacity: 0px;
+background: #94A6BE; */
 `;
 export const StatusThemeInput = styled.div`
 
 `;
 export const StatusThemeLabel = styled.div`
+width: 101px;
+height: 10px;
+gap: 0px;
+opacity: 0px;
+font-family: Roboto;
+font-size: 14px;
+font-weight: 400;
+text-align: center;
+color: #FFFFFF;
 
 `;
 export const StatusThemeActiveDiv = styled.div`
-
+width: 101px;
+height: 10px;
+font-family: Roboto;
+font-size: 14px;
+font-weight: 400;
+text-align: center;
+color: #FFFFFF;
 `;
 export const BtnGroupDiv = styled.div`
 
@@ -275,13 +301,16 @@ export const ButtonClose = styled.button`
   ${hover01}
 `;
 export const OpenedCardTheme = styled.div`
-  display: inline-block;
-  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 136px;
   height: 30px;
-  padding: 8px 20px;
+  
   border-radius: 24px;
-  margin-right: 7px;
-  opacity: 1;
+  
+  
   background-color: ${({ $themeColor }) =>
     topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
 
@@ -293,6 +322,8 @@ export const OpenedCardTheme = styled.div`
 export const PopBroweColor = styled.div`
   display: inline-block;
   padding: 8px 20px 8px 20px;
+  width: 115px;
+  height: 30px;
   border-radius: 24px;
   color: #9a48f1;
   background: #e9d4ff;
