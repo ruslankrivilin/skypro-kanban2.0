@@ -140,11 +140,11 @@ export default function PopBrowse() {
                   <S.StatusThemeLabel htmlFor="radio5">Готово</S.StatusThemeLabel>
                 </S.StatusThemesDiv>
               )}
-              {!isEdited && (
+              <S.OpenedCardTheme>{!isEdited && (
                 <S.StatusThemesDiv>
                   <S.StatusThemeActiveDiv>{card[0].status}</S.StatusThemeActiveDiv>
                 </S.StatusThemesDiv>
-              )}
+              )}</S.OpenedCardTheme>
             </S.PopBrowseStatus>
 
             <S.PopBrowseWrap>

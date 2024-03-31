@@ -75,11 +75,7 @@ export async function deleteTodo({ taskData, id, token }) {
         },
         method: "DELETE",
         body: JSON.stringify({
-            "title": taskData.title,
-            topic: taskData.topic,
-            status: taskData.status,
-            description: taskData.description,
-            date: taskData.date,
+            taskData,
         })
     });
 
