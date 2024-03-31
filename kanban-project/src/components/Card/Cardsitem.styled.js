@@ -2,9 +2,11 @@ import { styled } from "styled-components"
 import { topicStyles } from "../../styled/lib/topic";
 
 export const TopicText = styled.p`
-  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 10px;
+  line-height: 14px;
 `;
 
 export const CardTopic = styled.div`

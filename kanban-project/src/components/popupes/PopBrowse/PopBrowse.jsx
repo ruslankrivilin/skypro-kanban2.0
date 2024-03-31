@@ -94,7 +94,7 @@ export default function PopBrowse() {
               <S.StatusPsubTtlP>Статус</S.StatusPsubTtlP>
             {isEdited && (
                 <S.StatusThemesDiv>
-                  <S.StatusThemeInput
+                  <S.OpenedCardTheme
                     type="radio"
                     id="radio1"
                     name="status"
@@ -103,7 +103,7 @@ export default function PopBrowse() {
                   />
                   <S.StatusThemeLabel htmlFor="radio1">Без статуса</S.StatusThemeLabel>
 
-                  <S.StatusThemeInput
+                  <S.OpenedCardTheme
                     type="radio"
                     id="radio2"
                     name="status"
@@ -112,7 +112,7 @@ export default function PopBrowse() {
                   />
                   <S.StatusThemeLabel htmlFor="radio2">Нужно сделать</S.StatusThemeLabel>
 
-                  <S.StatusThemeInput
+                  <S.OpenedCardTheme
                     type="radio"
                     id="radio3"
                     name="status"
@@ -121,7 +121,7 @@ export default function PopBrowse() {
                   />
                   <S.StatusThemeLabel htmlFor="radio3">В работе</S.StatusThemeLabel>
 
-                  <S.StatusThemeInput
+                  <S.OpenedCardTheme
                     type="radio"
                     id="radio4"
                     name="status"
@@ -130,7 +130,7 @@ export default function PopBrowse() {
                   />
                   <S.StatusThemeLabel htmlFor="radio4">Тестирование</S.StatusThemeLabel>
 
-                  <S.StatusThemeInput
+                  <S.OpenedCardTheme
                     type="radio"
                     id="radio5"
                     name="status"
