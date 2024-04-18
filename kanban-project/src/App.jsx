@@ -2,13 +2,13 @@ import './App.css'
 import { Routes, Route } from "react-router-dom";
 import { appRoutes } from "./styled/lib/appRoutes";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import MainPage from "../pages/MainPage/MainPage";
-import SignupPage from "../pages/SignupPage/SignupPage";
-import SigninPage from "../pages/SigninPage/SigninPage";
-import NotFaundPage from "../pages/NotFaundPage/NotFaundPage";
-import TaskPage from "../pages/TaskPage/TaskPage";
-import ExitPage from "../pages/ExitPage/ExitPage";
-import AddTaskPage from '../pages/AddTaskPage/AddTaskPage';
+import TaskPage from "./pages/TaskPage/TaskPage";
+import ExitPage from "./pages/ExitPage/ExitPage";
+import AddTaskPage from './pages/AddTaskPage/AddTaskPage';
+import MainPage from './pages/MainPage/MainPage';
+import SigninPage from './pages/SigninPage/SigninPage';
+import SignupPage from './pages/SignupPage/SignupPage';
+import NotFaundPage from './pages/NotFaundPage/NotFaundPage';
 
 export default function App() {
   

@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { hover03 } from "../../../../common/Common.styled";
-
+import { hover03 } from "../../common/Common.styled";
 
 export const PopExites = styled.div`
   

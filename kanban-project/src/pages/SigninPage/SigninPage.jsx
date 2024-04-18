@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { ModalInput } from "../SignupPage/SignupPage.styled";
 import { BodySignin, ContainerSigninDiv, ModalBlockDiv, ModalBtnEnter, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalTtDiv, WraperSigninDiv } from "./SigninPage.styled";
-import { signIn } from "../../src/api";
-import { useUser } from "../../src/hooks/useUser";
 import { useNavigate } from "react-router-dom";
-import { appRoutes } from "../../src/styled/lib/appRoutes";
+import { ModalInput } from "../SignupPage/SignupPage.styled";
+import { signIn } from "../../api";
+import { useUser } from "../../hooks/useUser";
+import { appRoutes } from "../../styled/lib/appRoutes";
 
 export default function SigninPage() {
     const { login } = useUser();
