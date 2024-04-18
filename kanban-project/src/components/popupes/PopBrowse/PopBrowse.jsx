@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../styled/lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import { useTasks } from "../../../hooks/useTasks";
@@ -14,17 +14,18 @@ export default function PopBrowse() {
   const { user } = useUser();
   const { cards, setCards } = useTasks();
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState(null);
+  
   const [isEdited, setIsEdited] = useState(false);
-
-  let card = cards.filter((card) => card._id == `${id}`);
+  const openedCard = cards.find((card) => card._id == `${id}`);
+  // let card = cards.filter((card) => card._id == `${id}`);
+  const [selectedDate, setSelectedDate] = useState(openedCard.date);
 
   const [editTask, setEditTask] = useState({
-    title: card[0].title,
-    description: card[0].description,
-    topic: card[0].topic,
-    status: card[0].status,
-    date: card[0].date,
+    title: openedCard.title,
+    description: openedCard.description,
+    topic: openedCard.topic,
+    status: openedCard.status,
+    date: openedCard.date,
   });
   console.log(editTask);
 
@@ -49,6 +50,7 @@ export default function PopBrowse() {
     console.log(taskData);
     putTodo({ token: user.token, id: id, taskData: taskData })
       .then((newCard) => {
+        console.log(newCard)
         setCards(newCard.tasks);
         navigate(appRoutes.MAIN);
       })
@@ -74,19 +76,20 @@ export default function PopBrowse() {
       [name]: value,
     });
   };
-  // if (!openedCard) {
-  //   return <Navigate to={appRoutes.MAIN}/>
-  // }
+
+    if (!openedCard) {
+      return <Navigate to={appRoutes.MAIN}/>
+    }
   return (
     <S.PopBrowseStyled>
       <S.PopBrowseContainer>
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBroweTitle>Название задачи:  {card[0].title}</S.PopBroweTitle>
-              <S.PopBroweColor $themeColor={topicHeader[card[0].topic]}>
-              <TopicText $themeColor={topicHeader[card[0].topic]}>
-                  {card[0].topic}
+              <S.PopBroweTitle>Название задачи:  {openedCard.title}</S.PopBroweTitle>
+              <S.PopBroweColor $themeColor={topicHeader[openedCard.topic]}>
+              <TopicText $themeColor={topicHeader[openedCard.topic]}>
+                  {openedCard.topic}
                 </TopicText>
               </S.PopBroweColor>
             </S.PopBrowseTopBlock>
@@ -142,7 +145,7 @@ export default function PopBrowse() {
               )}
               <S.OpenedCardTheme>{!isEdited && (
                 <S.StatusThemesDiv>
-                  <S.StatusThemeActiveDiv>{card[0].status}</S.StatusThemeActiveDiv>
+                  <S.StatusThemeActiveDiv>{openedCard.status}</S.StatusThemeActiveDiv>
                 </S.StatusThemesDiv>
               )}</S.OpenedCardTheme>
             </S.PopBrowseStatus>
@@ -160,7 +163,7 @@ export default function PopBrowse() {
                       id="textArea01"
                       readOnly=""
                       placeholder="Введите описание задачи..."
-                      defaultValue={card[0].description}
+                      defaultValue={openedCard.description}
                       disabled={true}
                     />
                   )}
@@ -171,7 +174,7 @@ export default function PopBrowse() {
                       id="textArea01"
                       readOnly=""
                       placeholder="Введите описание задачи..."
-                      defaultValue={card[0].description}
+                      defaultValue={openedCard.description}
                       disabled={false}
                     />
                   )}
@@ -206,32 +209,33 @@ export default function PopBrowse() {
                 <S.ButtonClose>Закрыть</S.ButtonClose>
               </Link>
             </S.PopBrowseButtonBrowse>)}
-            {isEdited && (
-            <S.BtnBrowseDiv>
-            <S.BtnGroupDiv>
-              <S.BtnEdit
+            {isEdited && (<S.PopBrowseButtonBrowse>
+            <S.ButtonGroup>
+            
+              <S.ButtonChengeDelete
                 onClick={handleFormSubmit}
               >
                 Сохранить
-              </S.BtnEdit>
-              <S.BtnEdit
+              </S.ButtonChengeDelete>
+              <S.ButtonChengeDelete
                 onClick={() => {
                   setIsEdited(!isEdited);
                 }}
               >
                 Отменить
-              </S.BtnEdit>
+              </S.ButtonChengeDelete>
 
-              <S.BtnEdit
+              <S.ButtonChengeDelete
                 onClick={deleteTask}
               >
                 Удалить задачу
-              </S.BtnEdit>
-            </S.BtnGroupDiv>
+              </S.ButtonChengeDelete>
+              </S.ButtonGroup>
             <Link to={appRoutes.MAIN}>
-              <S.PopBrowseBtnExit>Закрыть</S.PopBrowseBtnExit>
+              <S.ButtonClose>Закрыть</S.ButtonClose>
             </Link>
-          </S.BtnBrowseDiv>
+          
+          </S.PopBrowseButtonBrowse>
         )}
           </S.PopBrowseContent>
         </S.PopBrowseBlock>

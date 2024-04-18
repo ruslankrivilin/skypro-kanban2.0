@@ -65,7 +65,6 @@ export const HeaderpopUserSet = styled.div`
   top: 61px;
   right: 0;
   width: 213px;
-  height: 205px;
   border-radius: 10px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   background: #FFF;

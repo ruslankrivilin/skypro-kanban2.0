@@ -1,6 +1,8 @@
+import { format } from "date-fns";
 import { topicHeader } from "../../styled/lib/topic";
 import * as S from "./Cardsitem.styled.js";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import ru from "date-fns/locale/ru";
 
 function Card({ topic, title, date, id }) {
     return (
@@ -10,13 +12,15 @@ function Card({ topic, title, date, id }) {
                     <S.CardTopic $themeColor={topicHeader[topic]}>
                         <S.TopicText>{topic}</S.TopicText>
                     </S.CardTopic>
-                    <a href="#popBrowse" target="_self">
+                    <Link to={`task/${id}`}>
+                    <div target="_self">
                         <div className="card__btn">
                             <div />
                             <div />
                             <div />
                         </div>
-                    </a>
+                    </div>
+                    </Link>
                 </div>
                 <div className="card__content">
                     <Link to={`task/${id}`}>
@@ -51,7 +55,7 @@ function Card({ topic, title, date, id }) {
                                 </clipPath>
                             </defs>
                         </svg>
-                        <p>{date}</p>
+                        <p>{format(date, "PP", { locale: ru })}</p>
                     </div>
                 </div>
             </div>

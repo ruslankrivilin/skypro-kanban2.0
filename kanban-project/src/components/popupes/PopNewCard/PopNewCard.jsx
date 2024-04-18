@@ -3,7 +3,7 @@ import Calendar from "../../Calendar/Calendar.jsx";
 import { useTasks } from "../../../hooks/useTasks.js";
 import { useUser } from "../../../hooks/useUser.js";
 import { postTodo } from "../../../api.js";
-import { useState } from "react";
+import React, { useState } from "react";
 import { appRoutes } from "../../../styled/lib/appRoutes.js";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function PopNewCard() {
     const { user } = useUser();
     const { setCards } = useTasks();
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = React.useState(null);
     const navigate = useNavigate();
 
     const [newTask, setNewTask] = useState({
