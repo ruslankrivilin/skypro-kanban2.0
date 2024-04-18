@@ -70,6 +70,20 @@ export const StatusPsubTtlP = styled.div`
 
 `;
 export const StatusThemesDiv = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    gap: 7px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    
+    letter-spacing: 0em;
+    text-align: center;
+   
+
+
 
 /* width: Fixed (136px)px;
 height: Hug (30px)px;
@@ -83,6 +97,26 @@ export const StatusThemeInput = styled.div`
 
 `;
 export const StatusThemeLabel = styled.div`
+  display: inline-block;
+  height: 30px;
+  padding: 8px 20px 8px 20px;
+  border-radius: 24px;
+  
+  
+  cursor: pointer;
+  margin-right: 7px;
+  opacity: 40%;
+  background-color: ${({ $color }) =>
+        topicStyles[$color]?.backgroundColor || "#94A6BE"};
+
+  ${TopicText} {
+    color: ${({ $color }) => topicStyles[$color]?.color || "#FFFFF"};
+  }
+
+  &:hover {
+    opacity: 100%;
+  }
+/* display: inline-block;
 width: 101px;
 height: 10px;
 gap: 0px;
@@ -91,7 +125,7 @@ font-family: Roboto;
 font-size: 14px;
 font-weight: 400;
 text-align: center;
-color: #FFFFFF;
+color: #000; */
 
 `;
 export const StatusThemeActiveDiv = styled.div`
@@ -103,9 +137,7 @@ font-weight: 400;
 text-align: center;
 color: #FFFFFF;
 `;
-export const BtnGroupDiv = styled.div`
 
-`;
 export const BtnEdit = styled.div`
 
 `;
@@ -301,7 +333,14 @@ export const ButtonClose = styled.button`
   ${hover01}
 `;
 export const OpenedCardTheme = styled.div`
-  display: flex;
+  display: none;
+
+/* &:checked + label {
+  opacity: 100%;
+} */
+
+
+  /* display: flex;
   justify-content: center;
   align-items: center;
   
@@ -316,7 +355,7 @@ export const OpenedCardTheme = styled.div`
 
   ${TopicText} {
     color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
-  }
+  } */
 `;
 
 export const PopBroweColor = styled.div`
@@ -325,8 +364,12 @@ export const PopBroweColor = styled.div`
   width: 115px;
   height: 30px;
   border-radius: 24px;
-  color: #9a48f1;
-  background: #e9d4ff;
+  background-color: ${({ $themeColor }) =>
+        topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
+
+  ${TopicText} {
+    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
+  }
   margin-right: 7px;
 `
 

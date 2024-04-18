@@ -3,8 +3,10 @@ import * as S from "./Header.styled.js";
 import { Container } from "../../styled/Common.styled.js";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../styled/lib/appRoutes.js";
+import { useUser } from "../../hooks/useUser.js";
 
 function Header() {
+    const {user} = useUser();
     const [isOpened, setIsOpened] = useState(false);
     function togglePopup() {
         setIsOpened((prev) => !prev)
@@ -30,19 +32,16 @@ function Header() {
                             </Link>
                         </S.HeaderBtnMainNew>
                         <S.HeaderUser onClick={togglePopup} className="header__user _hover02">
-                            Ivan Ivanov
+                            {user.name}
                         </S.HeaderUser>
                         {isOpened && (<S.HeaderpopUserSet
                             
                             id="user-set-target"
                         >
                             {/* <a href="">x</a> */}
-                            <p className="pop-user-set__name">Ivan Ivanov</p>
-                            <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                            <div className="pop-user-set__theme">
-                                <p>Темная тема</p>
-                                <input type="checkbox" className="checkbox" name="checkbox" />
-                            </div>
+                            <p className="pop-user-set__name">{user.name}</p>
+                            <p className="pop-user-set__mail">{user.login}</p>
+                            
                             <S.Lala>
                             <Link to={appRoutes.EXIT}>
                                 <S.HeaderExit>
