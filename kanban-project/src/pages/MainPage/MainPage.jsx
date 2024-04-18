@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Header from "../../src/components/Header/Header";
-import MainContent from "../../src/components/MainContent/MainContent";
-import Column from "../../src/components/Column/Column";
 import { Outlet } from "react-router-dom";
-import { getTodos } from "../../src/api";
-import { useUser } from "../../src/hooks/useUser";
-import { useTasks } from "../../src/hooks/useTasks";
+import MainContent from "../../components/MainContent/MainContent";
+import { useTasks } from "../../hooks/useTasks";
+import { useUser } from "../../hooks/useUser";
+import { getTodos } from "../../api";
+import Column from "../../components/Column/Column";
+import Header from "../../components/Header/Header";
 
 
 function MainPage() {
