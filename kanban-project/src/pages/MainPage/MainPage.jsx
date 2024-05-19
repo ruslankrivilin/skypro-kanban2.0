@@ -36,6 +36,7 @@ function MainPage() {
 
   return (
     <>
+    <Outlet/>
       <div className="wrapper">
         <Outlet />
         <Header />

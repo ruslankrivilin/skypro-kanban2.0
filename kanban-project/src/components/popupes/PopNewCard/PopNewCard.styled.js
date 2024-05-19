@@ -194,5 +194,6 @@ export const InputRadio1 = styled.input`
 
 &:checked + label {
   opacity: 100%;
+  
 }
 `

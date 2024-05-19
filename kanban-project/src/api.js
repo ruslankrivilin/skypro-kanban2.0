@@ -49,13 +49,7 @@ export async function putTodo({ token, id, taskData }) {
             Authorization: `Bearer ${token}`,
         },
         method: "PUT",
-        body: JSON.stringify({
-            title: taskData.title,
-            topic: taskData.topic,
-            status: taskData.status,
-            description: taskData.description,
-            date: taskData.date,
-        })
+        body: JSON.stringify(taskData)
     });
 
 
