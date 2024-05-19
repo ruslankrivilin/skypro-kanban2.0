@@ -18,14 +18,14 @@ export default function PopBrowse() {
   const [isEdited, setIsEdited] = useState(false);
   const openedCard = cards.find((card) => card._id == `${id}`);
   // let card = cards.filter((card) => card._id == `${id}`);
-  const [selectedDate, setSelectedDate] = useState(openedCard.date);
+  const [selectedDate, setSelectedDate] = useState(openedCard?.date);
 
   const [editTask, setEditTask] = useState({
-    title: openedCard.title,
-    description: openedCard.description,
-    topic: openedCard.topic,
-    status: openedCard.status,
-    date: openedCard.date,
+    title: openedCard?.title,
+    description: openedCard?.description,
+    topic: openedCard?.topic,
+    status: openedCard?.status,
+    date: openedCard?.date,
   });
   console.log(editTask);
 
@@ -94,7 +94,7 @@ export default function PopBrowse() {
               </S.PopBroweColor>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
-              <S.StatusPsubTtlP>Статус</S.StatusPsubTtlP>
+              <S.StatusPsubTtlP>Статус: {openedCard.status}</S.StatusPsubTtlP>
             {isEdited && (
                 <S.StatusThemesDiv>
                   <S.OpenedCardTheme
@@ -143,11 +143,6 @@ export default function PopBrowse() {
                   <S.StatusThemeLabel htmlFor="radio5">Готово</S.StatusThemeLabel>
                 </S.StatusThemesDiv>
               )}
-              <S.OpenedCardTheme>{!isEdited && (
-                <S.StatusThemesDiv>
-                  <S.StatusThemeActiveDiv>{openedCard.status}</S.StatusThemeActiveDiv>
-                </S.StatusThemesDiv>
-              )}</S.OpenedCardTheme>
             </S.PopBrowseStatus>
 
             <S.PopBrowseWrap>
@@ -185,14 +180,6 @@ export default function PopBrowse() {
                 setSelectedDate={setSelectedDate}
               />
             </S.PopBrowseWrap>
-            {/* <S.ThemeDownCategories>
-              <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
-              <S.OpenedCardTheme
-                $themeColor={topicHeader[openedCard?.topic]}
-              >
-                <p>{openedCard?.topic}</p>
-              </S.OpenedCardTheme>
-            </S.ThemeDownCategories> */}
             {!isEdited && (<S.PopBrowseButtonBrowse>
               <S.ButtonGroup>
                 <S.ButtonChengeDelete 
