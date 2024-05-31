@@ -142,7 +142,7 @@ export const RadioToolbarLabel1 = styled.label`
   background: #ffe4c2;
   cursor: pointer;
   margin-right: 7px;
-  opacity: 40%;
+  opacity: ${(props) => props.$active ? "100%" : "40%"};
 
   &:hover {
     opacity: 100%;
@@ -157,7 +157,8 @@ export const RadioToolbarLabel2 = styled.label`
   background: #b4fdd1;
   cursor: pointer;
   margin-right: 7px;
-  opacity: 40%;
+  opacity: ${(props) => props.$active ? "100%" : "40%"};
+
 
   &:hover {
     opacity: 100%;
@@ -172,7 +173,8 @@ export const RadioToolbarLabel3 = styled.label`
   background: #e9d4ff;
   cursor: pointer;
   margin-right: 7px;
-  opacity: 40%;
+  opacity: ${(props) => props.$active ? "100%" : "40%"};
+
 
   &:hover {
     opacity: 100%;
@@ -192,8 +194,48 @@ export const ProdCheckbox = styled.div`
 export const InputRadio1 = styled.input`
   display: none;
 
-&:checked + label {
-  opacity: 100%;
-  
-}
+
 `
+
+// export const  = styled.input`
+//   display: inline-block;
+//   width: auto;
+//   height: 30px;
+//   padding: 8px 20px;
+//   border-radius: 24px;
+//   margin-right: 7px;
+//   opacity: 0.4;
+
+//   &[type="radio"] {
+//     display: none;
+//   }
+
+//   &:checked + div {
+//   color: #ff6d00;
+//   background-color: #ffe4c2;
+//   border: 1px solid #ff6d00;
+//   font-weight: 700;
+  
+//   }
+// `;
+
+// export const CategoriesWebDesign = styled.div`
+//   display: inline-block;
+//   padding: 8px 20px 8px 20px;
+//   border-radius: 24px;
+//   color: #9a48f1;
+//   background: #e9d4ff;
+//   cursor: pointer;
+//   margin-right: 7px;
+//   opacity: 40%;
+//   border: 1px solid #ffe4c2;
+
+//   &:hover {
+//     opacity: 100%;
+//     background: #ffe4c2;
+//   }
+// `
+
+// export const CategoriesThemes = styled.div`
+// `
+

@@ -52,7 +52,7 @@ export default function PopNewCard() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target; // Извлекаем имя поля и его значение
-
+console.log(name, value)
         setNewTask({
             ...newTask, // Копируем текущие данные из состояния
             [name]: value, // Обновляем нужное поле
@@ -103,15 +103,17 @@ export default function PopNewCard() {
                                     type="radio"
                                     id="radio1"
                                     name="topic"
+                                    // checked={state.selectedLabel === "Web Design" ? true : false}
                                     value="Web Design"
                                     onChange={handleInputChange}
                                 />
-                                <S.RadioToolbarLabel1 htmlFor="radio1">Web Design</S.RadioToolbarLabel1>
+                                <S.RadioToolbarLabel1 $active={newTask.topic === "Web Design" } htmlFor="radio1">Web Design</S.RadioToolbarLabel1>
 
                                 <S.InputRadio1
                                     type="radio"
                                     id="radio2"
                                     name="topic"
+                                    // checked={state.selectedLabel === "Research" ? true : false}
                                     value="Research"
                                     onChange={handleInputChange}
                                 />
@@ -121,12 +123,57 @@ export default function PopNewCard() {
                                     type="radio"
                                     id="radio3"
                                     name="topic"
+                                    // checked={state.selectedLabel === "Copywriting" ? true : false}
                                     value="Copywriting"
                                     onChange={handleInputChange}
                                 />
                                 <S.RadioToolbarLabel3 htmlFor="radio3">Copywriting</S.RadioToolbarLabel3>
                             </S.RadioToolbar>
                         </S.ProdCheckbox>
+
+
+                        {/* <S.CategoriesThemes>
+                            <label>
+                            <S.ElenaInput
+                                    type="radio"
+                                    id="radio1"
+                                    name="topic"
+                                    // checked={state.selectedLabel === "Web Design" ? true : false}
+                                    value="Web Design"
+                                    onChange={handleInputChange}
+                                />
+                                <S.CategoriesWebDesign>
+                                <S.RadioToolbarLabel1 htmlFor="radio1">Web Design</S.RadioToolbarLabel1>
+                                </S.CategoriesWebDesign>
+                            </label>
+                            <label>
+                                <S.ElenaInput
+                                    type="radio"
+                                    id="radio2"
+                                    name="topic"
+                                    // checked={state.selectedLabel === "Research" ? true : false}
+                                    value="Research"
+                                    onChange={handleInputChange}
+                                />
+                                <S.CategoriesWebDesign>
+                                <S.RadioToolbarLabel2 htmlFor="radio2">Research</S.RadioToolbarLabel2>
+                                </S.CategoriesWebDesign>
+                            </label>
+                            <label>
+                                <S.ElenaInput
+                                    type="radio"
+                                    id="radio3"
+                                    name="topic"
+                                    // checked={state.selectedLabel === "Copywriting" ? true : false}
+                                    value="Copywriting"
+                                    onChange={handleInputChange}
+                                />
+                                <S.CategoriesWebDesign>
+                                <S.RadioToolbarLabel3 htmlFor="radio3">Copywriting</S.RadioToolbarLabel3>
+                                </S.CategoriesWebDesign>
+                            </label>
+                        </S.CategoriesThemes> */}
+
                         <S.FormNewCreatButton onClick={handleFormSubmit} id="btnCreate">Создать задачу</S.FormNewCreatButton>
                     </S.PopNewCardContent>
                 </S.PopNewCardBlock>
