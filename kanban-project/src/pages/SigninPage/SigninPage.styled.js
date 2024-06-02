@@ -6,6 +6,13 @@ export const BodySignin = styled.div`
   font-family: "Roboto", sans-serif;
 `
 
+export const ModalInputDiv = styled.div`
+  display: flex;
+  gap: 7px;
+  flex-direction: column;
+  width: 100%;
+`
+
 export const WraperSigninDiv = styled.div`
   width: 100%;
   height: 100%;
@@ -82,5 +89,10 @@ export const ModalFormatLoginForm = styled.div`
 `
 
 export const ModalFormGroupDiv = styled.div`
-text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  text-align: center;
 `

@@ -6,28 +6,28 @@ import ru from "date-fns/locale/ru";
 
 function Card({ topic, title, date, id }) {
     return (
-        <div className="cards__item">
-            <div className="cards__card card">
-                <div className="card__group">
+        <S.CardsItem>
+            <S.CardsCard>
+                <S.CardsGroup>
                     <S.CardTopic $themeColor={topicHeader[topic]}>
                         <S.TopicText>{topic}</S.TopicText>
                     </S.CardTopic>
                     <Link to={`task/${id}`}>
                     <div target="_self">
-                        <div className="card__btn">
-                            <div />
-                            <div />
-                            <div />
-                        </div>
+                        <S.CardBtn>
+                            <S.CardBtnDiv />
+                            <S.CardBtnDiv />
+                            <S.CardBtnDiv />
+                        </S.CardBtn>
                     </div>
                     </Link>
-                </div>
-                <div className="card__content">
+                </S.CardsGroup>
+                <S.CardContent>
                     <Link to={`task/${id}`}>
-                        <h3 className="card__title">{title}</h3>
+                        <S.CardTittle>{title}</S.CardTittle>
                     </Link>
-                    <div className="card__date">
-                        <svg
+                    <S.CardDate>
+                        <S.CardDateSvg
                             xmlns="http://www.w3.org/2000/svg"
                             width={13}
                             height={13}
@@ -54,12 +54,12 @@ function Card({ topic, title, date, id }) {
                                     <rect width={13} height={13} fill="white" />
                                 </clipPath>
                             </defs>
-                        </svg>
-                        <p>{format(date, "PP", { locale: ru })}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </S.CardDateSvg>
+                        <S.CardDateP>{format(date, "PP", { locale: ru })}</S.CardDateP>
+                    </S.CardDate>
+                </S.CardContent>
+            </S.CardsCard>
+        </S.CardsItem>
     )
 }
 

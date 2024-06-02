@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ModalBlockDiv, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalTtDiv } from "../SigninPage/SigninPage.styled";
+import { ModalBlockDiv, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalInputDiv, ModalTtDiv } from "../SigninPage/SigninPage.styled";
 import { BodySignup, ContainerSignup, ModalBtnSignup, ModalInput, WraperDiv } from "./SignupPage.styled";
 import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
@@ -39,6 +39,7 @@ export default function SignupPage() {
                             <h2>Регистрация</h2>
                         </ModalTtDiv>
                         <ModalFormatLoginForm>
+                            <ModalInputDiv>
                             <ModalInput className="modal__input first-name" 
                             value={regData.name}
                             onChange={handleInputChange}
@@ -63,11 +64,12 @@ export default function SignupPage() {
                             id="passwordFirst" 
                             placeholder="Пароль">                               
                             </ModalInput>
+                            </ModalInputDiv>
                             <ModalBtnSignup onClick={handleReg}>
                                 Зарегистрироваться
                             </ModalBtnSignup>
                             <ModalFormGroupDiv>
-                                <p>Уже есть аккаунт?  
+                                <p>Уже есть аккаунт?&nbsp;
                                     <Link to={appRoutes.SIGNIN}>
                                         Войдите здесь
                                     </Link>

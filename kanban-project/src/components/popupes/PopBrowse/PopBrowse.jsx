@@ -58,15 +58,6 @@ export default function PopBrowse() {
         console.log(error);
         alert(error);
       });
-    // postTodos({ token: user.token, taskData })
-    //   .then((newCard) => {
-    //     setCards(newCard.tasks);
-    //     navigate(appRoutes.MAIN);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     alert(error);
-    //   });
   };
 
   const handleInputChange = (e) => {
