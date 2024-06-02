@@ -142,7 +142,7 @@ export const RadioToolbarLabel1 = styled.label`
   background: #ffe4c2;
   cursor: pointer;
   margin-right: 7px;
-  opacity: 40%;
+  opacity: ${(props) => props.$active ? "100%" : "40%"};
 
   &:hover {
     opacity: 100%;
@@ -157,7 +157,8 @@ export const RadioToolbarLabel2 = styled.label`
   background: #b4fdd1;
   cursor: pointer;
   margin-right: 7px;
-  opacity: 40%;
+  opacity: ${(props) => props.$active ? "100%" : "40%"};
+
 
   &:hover {
     opacity: 100%;
@@ -172,7 +173,8 @@ export const RadioToolbarLabel3 = styled.label`
   background: #e9d4ff;
   cursor: pointer;
   margin-right: 7px;
-  opacity: 40%;
+  opacity: ${(props) => props.$active ? "100%" : "40%"};
+
 
   &:hover {
     opacity: 100%;
@@ -192,8 +194,5 @@ export const ProdCheckbox = styled.div`
 export const InputRadio1 = styled.input`
   display: none;
 
-&:checked + label {
-  opacity: 100%;
-  
-}
+
 `

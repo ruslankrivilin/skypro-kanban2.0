@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BodySignin, ContainerSigninDiv, ModalBlockDiv, ModalBtnEnter, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalTtDiv, WraperSigninDiv } from "./SigninPage.styled";
+import { BodySignin, ContainerSigninDiv, ModalBlockDiv, ModalBtnEnter, ModalDiv, ModalFormGroupDiv, ModalFormatLoginForm, ModalInputDiv, ModalTtDiv, WraperSigninDiv } from "./SigninPage.styled";
 import { useNavigate } from "react-router-dom";
 import { ModalInput } from "../SignupPage/SignupPage.styled";
 import { signIn } from "../../api";
@@ -38,6 +38,7 @@ export default function SigninPage() {
                                 <h2>Вход</h2>
                             </ModalTtDiv>
                             <ModalFormatLoginForm action="#">
+                                <ModalInputDiv>
                                 <ModalInput
                                     value={loginData.login}
                                     onChange={handleInputChange}
@@ -54,6 +55,7 @@ export default function SigninPage() {
                                     id="passwordFirst"
                                     placeholder="Пароль">
                                 </ModalInput>
+                                </ModalInputDiv>
                                 <ModalBtnEnter onClick={handleLogin}>Войти</ModalBtnEnter>
                                 <ModalFormGroupDiv>
                                     <p>Нужно зарегистрироваться?</p>

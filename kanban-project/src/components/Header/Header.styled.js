@@ -94,18 +94,3 @@ export const HeaderExit = styled.span`
   letter-spacing: -0.14px;
   color: #565EEF;
 `
-// export const CheckBox = styled.header`
-
-// `;
-
-// .pop-user-set__theme input[type=checkbox] {
-//   position: relative;
-//   width: 24px;
-//   height: 13px;
-//   border-radius: 100px;
-//   background: #EAEEF6;
-//   outline: none;
-//   -webkit-appearance: none;
-//      -moz-appearance: none;
-//           appearance: none;
-// }

@@ -781,20 +781,7 @@ body {
   font-weight: 600;
   line-height: 10px;
 }
-.card__btn {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 2px;
-}
-.card__btn div {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: #94A6BE;
-}
+
 .card__title {
   font-size: 14px;
   font-weight: 500;
